@@ -29,23 +29,17 @@ public class App {
             while (line != null) {
                 JSONObject jsonObject = (JSONObject) parser.parse(line);
                 String user_id = (String) jsonObject.get("user_id");
-                List<String> friends = new ArrayList<>();
 
                 String friendsString = (String) jsonObject.get("friends");
 
-                for (String friend: friendsString.split(",")) {
-                    friends.add(friend.strip());
-                }
-                User user = new User(user_id, friends);
+                List<String> friends = new ArrayList<>(Arrays.asList(friendsString.split(", ")));
 
+                User user = new User(user_id, friends);
+//                System.out.println(user);
                 userIdMap.put(user_id, user);
                 line = br.readLine();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
     }

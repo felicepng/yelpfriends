@@ -29,4 +29,8 @@ public class User {
         this.friends = friends;
     }
 
+    public String toString() {
+        return "User: " + user_id + ", friends: " + friends.toString();
+    }
+
 }

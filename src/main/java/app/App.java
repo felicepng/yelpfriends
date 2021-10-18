@@ -1,8 +1,10 @@
 package app;
 
+import model.*;
+
 import java.util.HashMap;
 import java.util.Map;
-import model.User;
+
 
 public class App {
     

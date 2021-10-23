@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends CrudRepository<User,String> {
 
 
-    @Query("insert USERDATA SET user_id = :user_id WHERE friends = :friends")
-    public User save(@Param("user_id") String id, @Param("friends") String friends);
+    @Query("insert into USERDATA(user_id,friends) VALUES (:user_id,:friends)")
+    public User save(@Param("user_id") String id,@Param("friends") String friends);
 
 
 }

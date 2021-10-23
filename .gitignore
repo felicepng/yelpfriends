@@ -31,3 +31,9 @@ hs_err_pid*
 # Intellij
 .idea/
 yelpfriends.iml
+
+#Mac users
+.DS_Store
+
+#Env variables
+src/main/resources/application.properties

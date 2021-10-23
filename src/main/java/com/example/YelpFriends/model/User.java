@@ -1,9 +1,12 @@
-package model;
+package com.example.YelpFriends.model;
+
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
 public class User {
 
+    @Id
     private String user_id;
 
     private List<String> friends;

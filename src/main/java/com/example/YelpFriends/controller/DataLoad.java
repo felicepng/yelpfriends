@@ -55,7 +55,7 @@ public class DataLoad {
             br = new BufferedReader(new FileReader("src/main/resources/test.json"));
 
             while ((sCurrentLine = br.readLine()) != null) {
-                JSONObject jsonobject = (JSONObject) new JSONParser().parse(sCurrentLine);
+                // JSONObject jsonobject = (JSONObject) new JSONParser().parse(sCurrentLine);
                 JSONObject jsonObject = (JSONObject) parser.parse(sCurrentLine);
                 String user_id = (String) jsonObject.get("user_id");
 

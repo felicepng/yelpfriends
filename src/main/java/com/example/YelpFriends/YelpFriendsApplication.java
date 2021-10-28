@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class YelpFriendsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(YelpFriendsApplication.class, args);
+		SpringApplication.run(YelpFriendsApplication.class, args);		
 	}
 }

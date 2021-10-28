@@ -2,24 +2,30 @@ package com.example.YelpFriends.model;
 import java.util.*;
 
 public class TreeNode {
-    private String value;
+    private String userId;
     private TreeNode parent;
     private int numChildren;
     private List<TreeNode> children;
 
-    public TreeNode(String value, TreeNode parent) {
-        this.parent = parent;
-        this.value = value;
+    public TreeNode(String userId) {
+        this.userId = userId;
         this.children = new ArrayList<>();
         this.numChildren = 0;
     }
 
-    public String getValue() {
-        return this.value;
+    public TreeNode(String userId, TreeNode parent) {
+        this.parent = parent;
+        this.userId = userId;
+        this.children = new ArrayList<>();
+        this.numChildren = 0;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public TreeNode getParent() {
@@ -44,5 +50,18 @@ public class TreeNode {
 
     public void setChildren(List<TreeNode> children) {
         this.children = children;
+    }
+
+    public TreeNode addChild(String value) {
+        TreeNode newChild = new TreeNode(value, this);
+        this.children.add(newChild);
+        this.setNumChildren(this.numChildren + 1);
+        return newChild;
+    }
+
+    public TreeNode addChildNode(TreeNode child) {
+        this.children.add(child);
+        this.setNumChildren(this.numChildren + 1);
+        return child;
     }
 }

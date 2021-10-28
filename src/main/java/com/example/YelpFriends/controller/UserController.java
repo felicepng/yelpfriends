@@ -2,20 +2,18 @@ package com.example.YelpFriends.controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.Optional;
 
+import com.example.YelpFriends.model.AdjacencyMatrix;
 import com.example.YelpFriends.model.User;
 import com.example.YelpFriends.repository.UserRepository;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,8 +21,11 @@ public class UserController {
 
     private UserRepository userRepository;
 
+    // private AdjacencyMatrix adjacencyMatrix;
+
     public UserController(UserRepository users) {
         this.userRepository = users;
+        // this.adjacencyMatrix = adjacencyMatrix;
     }
 
     @GetMapping("/load")
@@ -68,5 +69,14 @@ public class UserController {
         }
         System.out.println(count);
 	}
+
+    // public ResponseEntity<HttpStatus> buildMatrix() {
+    //     adjacencyMatrix.buildAdjacencyMatrix();
+    //     return new ResponseEntity<>(HttpStatus.OK);
+    // }
+
+
+
+    
 
 }

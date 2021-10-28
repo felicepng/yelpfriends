@@ -80,6 +80,26 @@ public class AdjacencyList {
         return list;
     }
 
+    public List<String> getThirdDegree(String userId) {
+        List<String> list = new ArrayList<>();
+        List<String> firstDegree = adjacencyList.get(userId);
+
+        for (String firstDegFriend : firstDegree) {
+            List<String> secondDegree = adjacencyList.get(firstDegFriend);
+
+            for (String secondDegFriend : secondDegree) {
+                List<String> thirdDegree = adjacencyList.get(secondDegFriend);
+
+                for (String thirdDegFriend : thirdDegree) {
+                    if (!firstDegree.contains(thirdDegFriend) && !secondDegree.contains(thirdDegFriend) && !userId.equals(thirdDegFriend)) {
+                        list.add(thirdDegFriend);
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
     // Testing
     public static void main(String[] args) {
         AdjacencyList testList = new AdjacencyList();

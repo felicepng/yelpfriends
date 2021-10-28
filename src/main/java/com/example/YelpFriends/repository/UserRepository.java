@@ -1,18 +1,18 @@
 package com.example.YelpFriends.repository;
 
 import com.example.YelpFriends.model.User;
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface UserRepository extends CrudRepository<User,String> {
+public interface UserRepository extends JpaRepository<User, Long>{
 
+    // Optional<User> findByUser_id(String user_id);
+    // Optional<User> findByUserId(String userId);
 
-    @Query("insert into USERDATA(user_id,friends) VALUES (:user_id,:friends)")
-    public User save(@Param("user_id") String id,@Param("friends") String friends);
-
+    List<User> findByUserId(String userId);
 
 }

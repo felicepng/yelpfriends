@@ -1,39 +1,75 @@
 package com.example.YelpFriends.model;
 
-import org.springframework.data.annotation.Id;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
+import org.hibernate.service.spi.InjectService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import antlr.collections.List;
+
+@Entity
+@Table(name = "USER")
+@EnableTransactionManagement
 public class User {
 
-    @Id
-    private String user_id;
+    @Id 
+    @GeneratedValue (strategy = GenerationType.IDENTITY) 
+    @Column(name = "id")
+    private  Long id;
 
-    private List<String> friends;
+    @Column(name = "userId", nullable=false, unique=true)
+    private String userId;
 
-    public User(String user_id, List<String> friends) {
-        this.user_id = user_id;
+    @Column(name = "friends")
+    @ElementCollection
+    private Set<String> friends = new HashSet<>();
+
+
+    public User () {
+
+    }
+
+    public User(String user_id, Set<String> friends) {
+        this.userId = user_id;
         this.friends = friends;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(String user_id) {
+        this.userId = user_id;
     }
 
-    public List<String> getFriends() {
+    public Long getId() {
+        return id;
+    }
+
+    // public void setId(Long id) {
+    //     this.id = id;
+    // }
+
+    public Set<String> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<String> friends) {
+    public void setFriends(Set<String> friends) {
         this.friends = friends;
     }
-
-    public String toString() {
-        return "User: " + user_id + ", friends: " + friends.toString();
-    }
-
+    
 }

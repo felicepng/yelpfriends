@@ -103,13 +103,41 @@ public class AdjacencyList {
     // Testing
     public static void main(String[] args) {
         AdjacencyList testList = new AdjacencyList();
-        Map<String, ArrayList<String>> adjList = testList.adjacencyList; 
+        Map<String, ArrayList<String>> adjList = testList.adjacencyList;
 
         adjList.put("Tom", new ArrayList<>());
         adjList.put("John", new ArrayList<>(Arrays.asList("Jack", "Mary")));
         adjList.put("Jack", new ArrayList<>(Arrays.asList("John")));
         adjList.put("Mary", new ArrayList<>(Arrays.asList("John")));
-
         testList.printAdjacencyList();
+        System.out.println();
+
+        System.out.println("After adding Dylan");
+        testList.addUser("Dylan");
+        testList.printAdjacencyList();
+        System.out.println();
+
+        System.out.println("After Dylan and John become friends");
+        testList.addEdge("Dylan", "John");
+        testList.printAdjacencyList();
+        System.out.println();
+
+        System.out.println("After Tom and John become friends");
+        testList.addEdge("Dylan", "Tom");
+        testList.printAdjacencyList();
+        System.out.println();
+
+        System.out.println("Third degree friends Mary has:");
+        System.out.println(testList.getThirdDegree("Mary"));
+
+        System.out.println("After removing friendship between Mary and John");
+        testList.removeEdge("Mary", "John");
+        testList.printAdjacencyList();
+        System.out.println();
+
+        System.out.println("After removing John");
+        testList.removeUser("John");
+        testList.printAdjacencyList();
+        System.out.println();
     }
 }

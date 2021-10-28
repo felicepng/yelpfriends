@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Optional;
 
 import com.example.YelpFriends.model.User;
 import com.example.YelpFriends.repository.UserRepository;
@@ -38,8 +39,16 @@ public class UserController {
 
             while ((sCurrentLine = br.readLine()) != null) {
                 // JSONObject jsonobject = (JSONObject) new JSONParser().parse(sCurrentLine);
+                count += 1;
+                System.out.println(count);
+                
                 JSONObject jsonObject = (JSONObject) parser.parse(sCurrentLine);
                 String user_id = (String) jsonObject.get("user_id");
+
+                // Check if user already exists
+                if (userRepository.findByUserId(user_id).isPresent()) {
+                    continue;
+                }
 
                 String friendsString = (String) jsonObject.get("friends");
 
@@ -53,8 +62,6 @@ public class UserController {
 
                 userRepository.save(user);
                 // sCurrentLine = br.readLine();
-                System.out.println(count);
-                count += 1;
             }
         } catch (Exception e) {
             e.printStackTrace();

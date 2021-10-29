@@ -5,28 +5,33 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.example.YelpFriends.model.AdjacencyList;
 import com.example.YelpFriends.model.AdjacencyMatrix;
 import com.example.YelpFriends.model.User;
 import com.example.YelpFriends.repository.UserRepository;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
 
+    @Autowired
+    private AdjacencyList adjacencyList;
+
+    @Autowired
+    private AdjacencyMatrix adjacencyMatrix;
+
+    //To be removed if we dont need /load anymore
+    @Autowired
     private UserRepository userRepository;
-
-    // private AdjacencyMatrix adjacencyMatrix;
-
-    public UserController(UserRepository users) {
-        this.userRepository = users;
-        // this.adjacencyMatrix = adjacencyMatrix;
-    }
 
     @GetMapping("/load")
     public void loadUserData() {
@@ -69,6 +74,48 @@ public class UserController {
         }
         System.out.println(count);
 	}
+    @GetMapping("/buildAdjMatrix")
+    public ResponseEntity<?> loadAdjMat() {
+//       AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix();
+       adjacencyMatrix.buildAdjacencyMatrix();
+       return ResponseEntity.ok(adjacencyMatrix.fullAdjacency);
+    }
+
+
+    @GetMapping(value = "/adjMatrix/getFirstDegree/{user_id}")
+    public ResponseEntity<?> loadAdjMatFirstDegree(@PathVariable String user_id) {
+        if (adjacencyMatrix.fullAdjacency == null ){
+            adjacencyMatrix.buildAdjacencyMatrix();
+        }
+        return ResponseEntity.ok(adjacencyMatrix.getFirstDegree(user_id));
+    }
+
+    @GetMapping(value = "/adjMatrix/getSecondDegree/{user_id}")
+    public ResponseEntity<?> loadAdjMatSecondtDegree(@PathVariable String user_id) {
+        if (adjacencyMatrix.fullAdjacency == null ){
+            adjacencyMatrix.buildAdjacencyMatrix();
+        }
+        return ResponseEntity.ok(adjacencyMatrix.getSecondDegree(user_id));
+    }
+
+    @GetMapping(value = "/buildAdjList")
+    public ResponseEntity<?> loadAdjList(){
+        adjacencyList.buildAdjacencyList();
+        return ResponseEntity.ok(adjacencyList.fullAdjacencyList);
+    }
+
+    @GetMapping(value = "/adjList/getFirstDegree/{user_id}")
+    public ResponseEntity<?> loadAdjListFirstDegree(@PathVariable String user_id) {
+        if (adjacencyList.fullAdjacencyList == null ){
+            adjacencyList.buildAdjacencyList();
+        }
+        return ResponseEntity.ok(adjacencyList.getFirstDegree(user_id));
+    }
+
+
+
+
+
 
     // public ResponseEntity<HttpStatus> buildMatrix() {
     //     adjacencyMatrix.buildAdjacencyMatrix();

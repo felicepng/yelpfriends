@@ -4,8 +4,10 @@ import java.util.*;
 import com.example.YelpFriends.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class AdjacencyMatrix {
     // 0th row of Adjacency will be UserID and 0th column will be UserID
     // Depends on buffer reader of DB, can use String[][] fullAdjacency will be
@@ -19,28 +21,24 @@ public class AdjacencyMatrix {
     public HashMap<String,Integer> userIndex = new HashMap<>();
 
     // Remove if testing
-    // @Autowired
-    public UserRepository userRepository;
+     @Autowired
+    private  UserRepository userRepository;
 
-    public List<User> users;
+//    public List<User> users;
 
-    public AdjacencyMatrix() {
 
-    }
-
-    // @Autowired
-    public AdjacencyMatrix(Integer size, String[][] fullAdjacency, HashMap<String, Integer> userIndex,
-            UserRepository userRepository, List<User> users) {
-        this.size = size;
-        this.fullAdjacency = fullAdjacency;
-        this.userIndex = userIndex;
-        this.userRepository = userRepository;
-        this.users = users;
-    }
+//     @Autowired
+//    public AdjacencyMatrix(Integer size, String[][] fullAdjacency, HashMap<String, Integer> userIndex,
+//            UserRepository userRepository, List<User> users) {
+//        this.size = size;
+//        this.fullAdjacency = fullAdjacency;
+//        this.userIndex = userIndex;
+//        this.userRepository = userRepository;
+////        this.users = users;
+//    }
 
     public void buildAdjacencyMatrix() {
-        // List<User> users = userRepository.findAll();
-        
+         List<User> users = userRepository.findAll();
         int lenOfUsers = users.size();
         this.fullAdjacency = new String[lenOfUsers+1][lenOfUsers+1];
         for(int i = 0; i < lenOfUsers; i++){
@@ -55,12 +53,16 @@ public class AdjacencyMatrix {
             Set<String> friendsList = user.getFriends();
             for(String friend: friendsList){
                 // String friendUserId = friend.getUserId();
-                int indexOfFriend = userIndex.get(friend);
-                fullAdjacency[indexOfUser][indexOfFriend] = "1";
-                fullAdjacency[indexOfFriend][indexOfUser] = "1";
+                Integer indexOfFriend = userIndex.get(friend);
+                if (indexOfFriend != null){
+                    fullAdjacency[indexOfUser][indexOfFriend] = "1";
+                    fullAdjacency[indexOfFriend][indexOfUser] = "1";
+                }
+
             }
         }
         this.size = lenOfUsers+1;
+        System.out.println(this.size);
     }
 
     // public int getIndexOfUser(String userId) {
@@ -80,7 +82,16 @@ public class AdjacencyMatrix {
     //     }
     //     return middle;
     // }
-
+    public Set<String> getFirstDegree(String userId){
+        int indexOfUser = userIndex.get(userId);
+        Set<String> firstDegree = new HashSet<String >();
+        for (int i = 1; i < this.size; i++){
+            if (fullAdjacency[indexOfUser][i]!=null && fullAdjacency[indexOfUser][i].equals("1")){
+                firstDegree.add(fullAdjacency[i][0]);
+            }
+        }
+        return  firstDegree;
+    }
 
     public HashMap<String,Integer> getSecondDegree(String userId) {
         // Get column for userId
@@ -117,46 +128,46 @@ public class AdjacencyMatrix {
         return secondDegree;
     }
 
-    public static void main(String[] args) {
-
-        List<User> users = new ArrayList<>();
-        
-
-        // adjList.put("Tom", new HashSet<>());
-        // adjList.put("John", new HashSet<>(Arrays.asList("Jack", "Mary")));
-        // adjList.put("Jack", new HashSet<>(Arrays.asList("John")));
-        // adjList.put("Mary", new HashSet<>(Arrays.asList("John")));
-        Set<String> nicsFriends = new HashSet<String>();
-        nicsFriends.add("yvonne"); 
-        nicsFriends.add("felice");
-        nicsFriends.add("jer");
-        nicsFriends.add("daryl");
-        User nic = new User("nic", nicsFriends);
-        users.add(nic);
-        Set<String> everyonesFriend = new HashSet<String>();
-        everyonesFriend.add("nic");
-        Set<String> darylsFriends = new HashSet<String>();
-        User daryl = new User("daryl", everyonesFriend);
-        users.add(daryl);
-        User yvonne = new User("yvonne", everyonesFriend);
-        users.add(yvonne);
-        User felice = new User("felice", everyonesFriend);
-        users.add(felice);
-        User jer = new User("jer", everyonesFriend);
-        users.add(jer);
-
-        AdjacencyMatrix adjMat = new AdjacencyMatrix();
-        adjMat.users = users;
-        adjMat.buildAdjacencyMatrix();
-        for (int i = 0; i < adjMat.size;i++){
-            for (int j = 0; j < adjMat.size; j++){
-                System.out.println(adjMat.fullAdjacency[i][j]);
-            }
-        }
-        // adjList.put("Daryl", new ArrayList<>());
-        // adjList.put("nic >:(", new ArrayList<>());
-        // adjList.put("Yvonne", new ArrayList<String>(Arrays.asList("Jack", "Mary")));
-        // adjList.put("Felice :)", new ArrayList<String>(Arrays.asList("John")));
-        // adjList.put("Jerald", new ArrayList<String>(Arrays.asList("John")));
-    }
+//    public static void main(String[] args) {
+//
+//        List<User> users = new ArrayList<>();
+//
+//
+//        // adjList.put("Tom", new HashSet<>());
+//        // adjList.put("John", new HashSet<>(Arrays.asList("Jack", "Mary")));
+//        // adjList.put("Jack", new HashSet<>(Arrays.asList("John")));
+//        // adjList.put("Mary", new HashSet<>(Arrays.asList("John")));
+//        Set<String> nicsFriends = new HashSet<String>();
+//        nicsFriends.add("yvonne");
+//        nicsFriends.add("felice");
+//        nicsFriends.add("jer");
+//        nicsFriends.add("daryl");
+//        User nic = new User("nic", nicsFriends);
+//        users.add(nic);
+//        Set<String> everyonesFriend = new HashSet<String>();
+//        everyonesFriend.add("nic");
+//        Set<String> darylsFriends = new HashSet<String>();
+//        User daryl = new User("daryl", everyonesFriend);
+//        users.add(daryl);
+//        User yvonne = new User("yvonne", everyonesFriend);
+//        users.add(yvonne);
+//        User felice = new User("felice", everyonesFriend);
+//        users.add(felice);
+//        User jer = new User("jer", everyonesFriend);
+//        users.add(jer);
+//
+//        AdjacencyMatrix adjMat = new AdjacencyMatrix();
+//        adjMat.users = users;
+//        adjMat.buildAdjacencyMatrix();
+//        for (int i = 0; i < adjMat.size;i++){
+//            for (int j = 0; j < adjMat.size; j++){
+//                System.out.println(adjMat.fullAdjacency[i][j]);
+//            }
+//        }
+//        // adjList.put("Daryl", new ArrayList<>());
+//        // adjList.put("nic >:(", new ArrayList<>());
+//        // adjList.put("Yvonne", new ArrayList<String>(Arrays.asList("Jack", "Mary")));
+//        // adjList.put("Felice :)", new ArrayList<String>(Arrays.asList("John")));
+//        // adjList.put("Jerald", new ArrayList<String>(Arrays.asList("John")));
+//    }
 }

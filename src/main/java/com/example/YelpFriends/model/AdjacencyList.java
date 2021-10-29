@@ -5,17 +5,24 @@ import java.util.*;
 import com.example.YelpFriends.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AdjacencyList {
-    // @Autowired
+     @Autowired
     public UserRepository userRepository;
 
-    private Map<String, ArrayList<String>> adjacencyList = new HashMap<>();
+    public Map<String, ArrayList<String>> fullAdjacencyList;
 
     // TODO: Populate list with user data from db
     public void buildAdjacencyList() {
+        HashMap<String,ArrayList<String>> adjList = new HashMap<>();
         List<User> users = userRepository.findAll();
-        
+        for (User user : users){
+            Set<String> userFriends = user.getFriends();
+            adjList.put(user.getUserId(),new ArrayList<>(userFriends));
+        }
+        fullAdjacencyList = adjList;
         // int lenOfUsers = users.size();
 
         // for (User user : users) {
@@ -26,7 +33,7 @@ public class AdjacencyList {
 
     public void printAdjacencyList() {
         System.out.println("Adjacency List:");
-        for (Map.Entry<String, ArrayList<String>> entry : adjacencyList.entrySet()) {
+        for (Map.Entry<String, ArrayList<String>> entry : fullAdjacencyList.entrySet()) {
             System.out.print(entry.getKey() + " -> ");
 
             for (String friend : entry.getValue()) {
@@ -37,13 +44,13 @@ public class AdjacencyList {
     }
 
     public void addUser(String userId) {
-        adjacencyList.put(userId, new ArrayList<>());
+        fullAdjacencyList.put(userId, new ArrayList<>());
     }
 
     public void removeUser(String userId) {
-        adjacencyList.remove(userId);
+        fullAdjacencyList.remove(userId);
 
-        for (Map.Entry<String, ArrayList<String>> entry : adjacencyList.entrySet()) {
+        for (Map.Entry<String, ArrayList<String>> entry : fullAdjacencyList.entrySet()) {
             if (entry.getValue().contains(userId)) {
                 entry.getValue().remove(userId);
             }
@@ -51,25 +58,25 @@ public class AdjacencyList {
     }
 
     public void addEdge(String user1Id, String user2Id) {
-        adjacencyList.get(user1Id).add(user2Id);
-        adjacencyList.get(user2Id).add(user1Id);
+        fullAdjacencyList.get(user1Id).add(user2Id);
+        fullAdjacencyList.get(user2Id).add(user1Id);
     }
 
     public void removeEdge(String user1Id, String user2Id) {
-        adjacencyList.get(user1Id).remove(user2Id);
-        adjacencyList.get(user2Id).remove(user1Id);
+        fullAdjacencyList.get(user1Id).remove(user2Id);
+        fullAdjacencyList.get(user2Id).remove(user1Id);
     }
     
     public List<String> getFirstDegree(String userId) {
-        return adjacencyList.get(userId);
+        return fullAdjacencyList.get(userId);
     }
 
     public List<String> getSecondDegree(String userId) {
         List<String> list = new ArrayList<>();
-        List<String> firstDegree = adjacencyList.get(userId);
+        List<String> firstDegree = fullAdjacencyList.get(userId);
 
         for (String firstDegFriend : firstDegree) {
-            List<String> secondDegree = adjacencyList.get(firstDegFriend);
+            List<String> secondDegree = fullAdjacencyList.get(firstDegFriend);
 
             for (String secondDegFriend : secondDegree) {
                 if (!firstDegree.contains(secondDegFriend) && !userId.equals(secondDegFriend)) {
@@ -82,13 +89,13 @@ public class AdjacencyList {
 
     public List<String> getThirdDegree(String userId) {
         List<String> list = new ArrayList<>();
-        List<String> firstDegree = adjacencyList.get(userId);
+        List<String> firstDegree = fullAdjacencyList.get(userId);
 
         for (String firstDegFriend : firstDegree) {
-            List<String> secondDegree = adjacencyList.get(firstDegFriend);
+            List<String> secondDegree = fullAdjacencyList.get(firstDegFriend);
 
             for (String secondDegFriend : secondDegree) {
-                List<String> thirdDegree = adjacencyList.get(secondDegFriend);
+                List<String> thirdDegree = fullAdjacencyList.get(secondDegFriend);
 
                 for (String thirdDegFriend : thirdDegree) {
                     if (!firstDegree.contains(thirdDegFriend) && !secondDegree.contains(thirdDegFriend) && !userId.equals(thirdDegFriend)) {
@@ -101,43 +108,43 @@ public class AdjacencyList {
     }
 
     // Testing
-    public static void main(String[] args) {
-        AdjacencyList testList = new AdjacencyList();
-        Map<String, ArrayList<String>> adjList = testList.adjacencyList;
-
-        adjList.put("Tom", new ArrayList<>());
-        adjList.put("John", new ArrayList<>(Arrays.asList("Jack", "Mary")));
-        adjList.put("Jack", new ArrayList<>(Arrays.asList("John")));
-        adjList.put("Mary", new ArrayList<>(Arrays.asList("John")));
-        testList.printAdjacencyList();
-        System.out.println();
-
-        System.out.println("After adding Dylan");
-        testList.addUser("Dylan");
-        testList.printAdjacencyList();
-        System.out.println();
-
-        System.out.println("After Dylan and John become friends");
-        testList.addEdge("Dylan", "John");
-        testList.printAdjacencyList();
-        System.out.println();
-
-        System.out.println("After Tom and John become friends");
-        testList.addEdge("Dylan", "Tom");
-        testList.printAdjacencyList();
-        System.out.println();
-
-        System.out.println("Third degree friends Mary has:");
-        System.out.println(testList.getThirdDegree("Mary"));
-
-        System.out.println("After removing friendship between Mary and John");
-        testList.removeEdge("Mary", "John");
-        testList.printAdjacencyList();
-        System.out.println();
-
-        System.out.println("After removing John");
-        testList.removeUser("John");
-        testList.printAdjacencyList();
-        System.out.println();
-    }
+//    public static void main(String[] args) {
+//        AdjacencyList testList = new AdjacencyList();
+//        Map<String, ArrayList<String>> adjList = testList.adjacencyList;
+//
+//        adjList.put("Tom", new ArrayList<>());
+//        adjList.put("John", new ArrayList<>(Arrays.asList("Jack", "Mary")));
+//        adjList.put("Jack", new ArrayList<>(Arrays.asList("John")));
+//        adjList.put("Mary", new ArrayList<>(Arrays.asList("John")));
+//        testList.printAdjacencyList();
+//        System.out.println();
+//
+//        System.out.println("After adding Dylan");
+//        testList.addUser("Dylan");
+//        testList.printAdjacencyList();
+//        System.out.println();
+//
+//        System.out.println("After Dylan and John become friends");
+//        testList.addEdge("Dylan", "John");
+//        testList.printAdjacencyList();
+//        System.out.println();
+//
+//        System.out.println("After Tom and John become friends");
+//        testList.addEdge("Dylan", "Tom");
+//        testList.printAdjacencyList();
+//        System.out.println();
+//
+//        System.out.println("Third degree friends Mary has:");
+//        System.out.println(testList.getThirdDegree("Mary"));
+//
+//        System.out.println("After removing friendship between Mary and John");
+//        testList.removeEdge("Mary", "John");
+//        testList.printAdjacencyList();
+//        System.out.println();
+//
+//        System.out.println("After removing John");
+//        testList.removeUser("John");
+//        testList.printAdjacencyList();
+//        System.out.println();
+//    }
 }

@@ -38,6 +38,7 @@ public class AdjacencyMatrix {
 //    }
 
     public void buildAdjacencyMatrix() {
+        long startTime = System.nanoTime();
          List<User> users = userRepository.findAll();
         int lenOfUsers = users.size();
         this.fullAdjacency = new String[lenOfUsers+1][lenOfUsers+1];
@@ -61,8 +62,9 @@ public class AdjacencyMatrix {
 
             }
         }
+        long endTime = System.nanoTime();
         this.size = lenOfUsers+1;
-        System.out.println(this.size);
+        System.out.println("Time taken to build an Adjacency Matrix is " + (endTime - startTime) + "ns");
     }
 
     // public int getIndexOfUser(String userId) {
@@ -83,6 +85,8 @@ public class AdjacencyMatrix {
     //     return middle;
     // }
     public Set<String> getFirstDegree(String userId){
+
+        long startTime = System.nanoTime();
         int indexOfUser = userIndex.get(userId);
         Set<String> firstDegree = new HashSet<String >();
         for (int i = 1; i < this.size; i++){
@@ -90,11 +94,14 @@ public class AdjacencyMatrix {
                 firstDegree.add(fullAdjacency[i][0]);
             }
         }
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to get first degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
         return  firstDegree;
     }
 
     public HashMap<String,Integer> getSecondDegree(String userId) {
         // Get column for userId
+        long startTime = System.nanoTime();
         int indexOfUser = userIndex.get(userId);
         Set<Integer> firstDegree = new HashSet<Integer>();
         HashMap<String,Integer> secondDegree = new HashMap<>();
@@ -125,6 +132,8 @@ public class AdjacencyMatrix {
                 }
             }
         }
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to get second degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
         return secondDegree;
     }
 

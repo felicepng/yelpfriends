@@ -16,6 +16,7 @@ public class AdjacencyList {
 
     // TODO: Populate list with user data from db
     public void buildAdjacencyList() {
+        long startTime = System.nanoTime();
         HashMap<String,ArrayList<String>> adjList = new HashMap<>();
         List<User> users = userRepository.findAll();
         for (User user : users){
@@ -23,6 +24,8 @@ public class AdjacencyList {
             adjList.put(user.getUserId(),new ArrayList<>(userFriends));
         }
         fullAdjacencyList = adjList;
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to build Adjacency List is " + (endTime - startTime) + "ns");
         // int lenOfUsers = users.size();
 
         // for (User user : users) {
@@ -68,15 +71,24 @@ public class AdjacencyList {
     }
     
     public List<String> getFirstDegree(String userId) {
-        return fullAdjacencyList.get(userId);
+        long startTime = System.nanoTime();
+        ArrayList<String> toBeReturned = fullAdjacencyList.get(userId);
+        long endTime = System.nanoTime();
+        System.out.println("Time to get first degree from Adjacency List is " + (endTime - startTime) + "ns");
+        return toBeReturned;
     }
 
     public List<String> getSecondDegree(String userId) {
+        long startTime = System.nanoTime();
         List<String> list = new ArrayList<>();
         List<String> firstDegree = fullAdjacencyList.get(userId);
 
         for (String firstDegFriend : firstDegree) {
-            List<String> secondDegree = fullAdjacencyList.get(firstDegFriend);
+            Optional<User>firstDegreeFriend  = userRepository.findByUserId(firstDegFriend);
+            if (firstDegreeFriend.isEmpty()){
+                continue;
+            }
+            Set<String> secondDegree = firstDegreeFriend.get().getFriends();
 
             for (String secondDegFriend : secondDegree) {
                 if (!firstDegree.contains(secondDegFriend) && !userId.equals(secondDegFriend)) {
@@ -84,13 +96,15 @@ public class AdjacencyList {
                 }
             }
         }
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to get second degree from Adjacency List is " + (endTime - startTime) + "ns");
         return list;
     }
 
     public List<String> getThirdDegree(String userId) {
+        long startTime = System.nanoTime();
         List<String> list = new ArrayList<>();
         List<String> firstDegree = fullAdjacencyList.get(userId);
-
         for (String firstDegFriend : firstDegree) {
             List<String> secondDegree = fullAdjacencyList.get(firstDegFriend);
 
@@ -104,6 +118,8 @@ public class AdjacencyList {
                 }
             }
         }
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to get third degree from Adjacency List is " + (endTime - startTime) + "ns");
         return list;
     }
 

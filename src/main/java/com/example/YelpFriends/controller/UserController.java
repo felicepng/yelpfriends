@@ -74,14 +74,15 @@ public class UserController {
         }
         System.out.println(count);
 	}
+
+    //Adj Matrix
     @GetMapping("/buildAdjMatrix")
     public ResponseEntity<?> loadAdjMat() {
-//       AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix();
        adjacencyMatrix.buildAdjacencyMatrix();
        return ResponseEntity.ok(adjacencyMatrix.fullAdjacency);
     }
 
-
+    //q_QQ5kBBwlCcbL1s4NVK3g
     @GetMapping(value = "/adjMatrix/getFirstDegree/{user_id}")
     public ResponseEntity<?> loadAdjMatFirstDegree(@PathVariable String user_id) {
         if (adjacencyMatrix.fullAdjacency == null ){
@@ -98,6 +99,8 @@ public class UserController {
         return ResponseEntity.ok(adjacencyMatrix.getSecondDegree(user_id));
     }
 
+
+    //Adjacency List
     @GetMapping(value = "/buildAdjList")
     public ResponseEntity<?> loadAdjList(){
         adjacencyList.buildAdjacencyList();
@@ -110,6 +113,14 @@ public class UserController {
             adjacencyList.buildAdjacencyList();
         }
         return ResponseEntity.ok(adjacencyList.getFirstDegree(user_id));
+    }
+
+    @GetMapping(value = "/adjList/getSecondDegree/{user_id}")
+    public ResponseEntity<?> loadAdjListSecondDegree(@PathVariable String user_id) {
+        if (adjacencyList.fullAdjacencyList == null ){
+            adjacencyList.buildAdjacencyList();
+        }
+        return ResponseEntity.ok(adjacencyList.getSecondDegree(user_id));
     }
 
 

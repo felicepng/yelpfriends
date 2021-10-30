@@ -39,3 +39,5 @@ yelpfriends.iml
 src/main/resources/application.properties
 target/classes/yelp_academic_dataset_user.json
 src/main/resources/yelp_academic_dataset_user.json
+
+target/

@@ -123,9 +123,28 @@ public class UserController {
         return ResponseEntity.ok(adjacencyList.getSecondDegree(user_id));
     }
 
+    //Adjacency List
+    // @GetMapping(value = "/buildTree/{user_id}")
+    // public ResponseEntity<?> buildTree(@PathVariable String user_id){
+    //     adjacencyList.buildAdjacencyList();
+    //     return ResponseEntity.ok(adjacencyList.fullAdjacencyList);
+    // }
 
+    // @GetMapping(value = "/tree/getFirstDegree/{user_id}")
+    // public ResponseEntity<?> loadTreeFirstDegree(@PathVariable String user_id) {
+    //     if (adjacencyList.fullAdjacencyList == null ){
+    //         adjacencyList.buildAdjacencyList();
+    //     }
+    //     return ResponseEntity.ok(adjacencyList.getFirstDegree(user_id));
+    // }
 
-
+    // @GetMapping(value = "/tree/getSecondDegree/{user_id}")
+    // public ResponseEntity<?> loadTreeSecondDegree(@PathVariable String user_id) {
+    //     if (adjacencyList.fullAdjacencyList == null ){
+    //         adjacencyList.buildAdjacencyList();
+    //     }
+    //     return ResponseEntity.ok(adjacencyList.getSecondDegree(user_id));
+    // }
 
 
     // public ResponseEntity<HttpStatus> buildMatrix() {

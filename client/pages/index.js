@@ -5,6 +5,7 @@ import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import LoadData from '../components/LoadData'
 import UserIdInput from '../components/UserIdInput'
+import DegFriends from '../components/DegFriends'
 
 export default function Home() {
 
@@ -64,7 +65,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="border-t-2 pt-4 mt-5 grid grid-cols-4 gap-x-4">
+              <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">
                 <div className="flex items-center text-sm text-gray-500 font-semibold">
                   Fastest
                 </div>
@@ -74,13 +75,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-3xl col-span-1">
-              1st Degree Friends
-            </div>
-
-            <div className="bg-gray-50 rounded-3xl col-span-1">
-              2nd Degree Friends
-            </div>
+            <DegFriends title="1st Degree Friends" />
+            <DegFriends title="2nd Degree Friends" />
 
           </div>
         </div>

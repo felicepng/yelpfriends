@@ -53,13 +53,13 @@ export default function Home() {
                   <div className="flex items-center text-sm text-gray-500 font-semibold">
                     Using Tree
                   </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
+                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
                     <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
+                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
                     <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
+                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
                     <img src="/playButton.png" className="h-7" />
                   </div>
                 </div>

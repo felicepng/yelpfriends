@@ -14,7 +14,7 @@ const LoadData = () => {
   }
 
   return (
-    <div className="border px-4 py-2 bg-white shadow rounded-full cursor-pointer hover:bg-gray-100" onClick={() => initialLoad()}>
+    <div className="border px-4 py-2 bg-white shadow rounded-full cursor-pointer hover:bg-gray-200" onClick={() => initialLoad()}>
       Initial Load
     </div>
   )

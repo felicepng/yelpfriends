@@ -20,7 +20,7 @@ export default function Home() {
       </Head>
 
       <div className="w-screen justify-between flex items-center flex-col">
-        <div className="w-screen h-40 flex flex-col items-center justify-center bg-red-50">
+        <div className="w-screen h-40 flex flex-col items-center justify-center bg-green-50">
           <div className="mb-4 gap-x-1 flex items-center">
             <img src="/logo.png" className="h-11" />
             <h1 className="text-4xl font-bold">friends</h1>
@@ -34,7 +34,7 @@ export default function Home() {
         <AdjacencyList {...{ userId }} /> */}
         <div className="p-8 w-screen">
           <div className="grid grid-cols-4 gap-x-8">
-            <div className="p-4 bg-gray-50 rounded-3xl col-span-2 gap-y-4">
+            <div className="p-6 bg-gray-50 rounded-3xl col-span-2 gap-y-4">
               <div className="grid grid-cols-4 gap-x-4 mb-3">
                 <div />
                 <div className="text-sm text-gray-400 font-semibold px-4 text-center">
@@ -52,54 +52,54 @@ export default function Home() {
                   <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
                     Using Adjacency Matrix
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
                 </div>
                 <div className="grid grid-cols-4 gap-x-4">
                   <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
                     Using Adjacency List
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
                 </div>
                 <div className="grid grid-cols-4 gap-x-4">
                   <div className="flex items-center text-sm text-gray-500 font-semibold">
                     Using Tree
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
-                  <div className="flex items-center justify-center bg-white rounded-2xl">
-                    Button
+                  <div className="flex items-center justify-center bg-white hover:bg-gray-100 cursor-pointer rounded-2xl">
+                    <img src="/playButton.png" className="h-7" />
                   </div>
                 </div>
               </div>
 
               <div className="border-t-2 pt-4 mt-4 grid grid-cols-4 gap-x-4">
-                  <div className="flex items-center text-sm text-gray-500 font-semibold">
-                    Fastest
-                  </div>
-                  <div className="h-14 flex items-center justify-center bg-white rounded-2xl" />
-                  <div className="flex items-center justify-center bg-white rounded-2xl" />
-                  <div className="flex items-center justify-center bg-white rounded-2xl" />
+                <div className="flex items-center text-sm text-gray-500 font-semibold">
+                  Fastest
                 </div>
+                <div className="h-14 flex items-center justify-center bg-white rounded-2xl" />
+                <div className="flex items-center justify-center bg-white rounded-2xl" />
+                <div className="flex items-center justify-center bg-white rounded-2xl" />
+              </div>
             </div>
 
             <div className="bg-gray-50 rounded-3xl col-span-1">

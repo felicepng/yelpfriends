@@ -82,7 +82,6 @@ public class UserController {
     public ResponseEntity<?> loadAdjMat() {
        adjacencyMatrix.buildAdjacencyMatrix();
        return ResponseEntity.ok(adjacencyMatrix.fullAdjacency);
-        // return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //q_QQ5kBBwlCcbL1s4NVK3g

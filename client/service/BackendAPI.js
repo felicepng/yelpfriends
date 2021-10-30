@@ -36,7 +36,8 @@ class BackendAPI {
         return axios.get(`${BACKEND_API_URL}/adjMatrix/getSecondDegree/${user_id}`);
     }
 
-    //ADJACENCY LIST
+    // ADJACENCY LIST
+
     // Build Adjacency matrix for current users in the database
     buildAdjList = () => {
         return axios.get(`${BACKEND_API_URL}/buildAdjList`);
@@ -47,9 +48,26 @@ class BackendAPI {
         return axios.get(`${BACKEND_API_URL}/adjList/getFirstDegree/${user_id}`);
     }
 
-    // Get the set of second degree connections with specified user with user_id
+    // Get the map of second degree connections with specified user with user_id
     getAdjListSecondDegree = (user_id) => {
         return axios.get(`${BACKEND_API_URL}/adjList/getSecondDegree/${user_id}`);
+    }
+
+    // TREE
+
+    // Build Tree for user
+    buildTree = (user_id) => {
+        return axios.get(`${BACKEND_API_URL}/buildTree/${user_id}`);
+    }
+
+    // Get the set of first degree connections with specified user with user_id
+    getTreeFirstDegree = (user_id) => {
+        return axios.get(`${BACKEND_API_URL}/tree/getFirstDegree/${user_id}`);
+    }
+
+    // Get the set of second degree connections with specified user with user_id
+    getTreeSecondDegree = (user_id) => {
+        return axios.get(`${BACKEND_API_URL}/tree/getSecondDegree/${user_id}`);
     }
 
 }

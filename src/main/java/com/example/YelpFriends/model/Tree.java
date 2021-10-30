@@ -4,11 +4,12 @@ import java.util.*;
 
 import com.example.YelpFriends.repository.UserRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class Tree {
     // @Autowired
     private TreeNode root;
+    private Set<String> firstDegFriends = new HashSet<>();
+    private Set<String> secondDegFriends = new HashSet<>();
 
     // @Autowired
     UserRepository userRepository;
@@ -47,13 +48,13 @@ public class Tree {
     // return node.getParent();
     // }
 
-    public boolean isInternal(TreeNode node) {
-        return node.getNumChildren() > 0;
-    }
+    // public boolean isInternal(TreeNode node) {
+    //     return node.getNumChildren() > 0;
+    // }
 
-    public boolean isExternal(TreeNode node) {
-        return node.getNumChildren() == 0;
-    }
+    // public boolean isExternal(TreeNode node) {
+    //     return node.getNumChildren() == 0;
+    // }
 
     public boolean isRoot(TreeNode node) {
         return node == getRoot();
@@ -68,23 +69,51 @@ public class Tree {
         return depth;
     }
 
-    public static Set<TreeNode> BreadthFirstSearch(TreeNode root) {
+    public Set<String> getSecondDegree(TreeNode root) {
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
-        if (root == null) { // empty tree
-            return null;
-        }
         queue.add(root);
 
         TreeNode tempNode;
         while (!queue.isEmpty()) {
             tempNode = queue.poll();
+
+            // add if depth is 2 and if not already in first deg list
+            if(depth(tempNode) == 2 && !firstDegFriends.contains(tempNode.getUserId())) {
+                secondDegFriends.add(tempNode.getUserId());
+            }
+
             List<TreeNode> children = tempNode.getChildren();
             Iterator<TreeNode> itr = children.iterator();
-            while (itr.hasNext()) {
+            while(itr.hasNext()) {
                 queue.add(itr.next());
             }
         }
-        return null;
+
+        return secondDegFriends;
     }
+
+    public Set<String> getFirstDegree(TreeNode root) {
+        // BFS
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+
+        TreeNode tempNode;
+        while (!queue.isEmpty()) {
+            tempNode = queue.poll();
+            // add if depth is 1
+            if(depth(tempNode) == 1) { 
+                firstDegFriends.add(tempNode.getUserId());
+            }
+
+            List<TreeNode> children = tempNode.getChildren();
+            Iterator<TreeNode> itr = children.iterator();
+            while(itr.hasNext()) {
+                queue.add(itr.next());
+            }
+        }
+
+        return firstDegFriends;
+    }
+
 }

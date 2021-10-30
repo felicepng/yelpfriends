@@ -34,13 +34,13 @@ const AdjacencyMatrix = (props) => {
 
     return (
         <div>
-            <h1>Adjacency Matrix</h1>
-            <div className="border border-black">
-                <button className="flex mx-auto"
+            <h1 className="text-2xl font-bold">Adjacency Matrix</h1>
+            <div className="flex gap-x-4">
+                <button className="border px-2"
                 onClick={()=>{load()}}>Build Adjacency Matrix</button>
-                <button className="flex mx-auto"
+                <button className="border px-2"
                 onClick={()=>{getFirstDegree(userId)}}>First Degree Friends</button>
-                <button className="flex mx-auto"
+                <button className="border px-2"
                 onClick={()=>{getSecondDegree(userId)}}>Second Degree Friends</button>
             </div>
         </div>

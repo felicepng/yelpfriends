@@ -9,8 +9,8 @@ const UserIdInput = (props) => {
     return (
         <div className="">
             <p>User Id: {userId}</p>
-            <input value={tempId} onChange={(e) => {setTempId(e.target.value)}}/>
-            <button onClick={()=>{setUserId(tempId)}}>Log in</button>
+            <input className="border" value={tempId} onChange={(e) => {setTempId(e.target.value)}}/>
+            <button className="border px-2 ml-4" onClick={()=>{setUserId(tempId)}}>Log in</button>
         </div>
     )
 }

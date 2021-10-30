@@ -5,27 +5,26 @@ import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import LoadData from '../components/LoadData'
 import UserIdInput from '../components/UserIdInput'
-import styles from '../styles/Home.module.css'
 
 export default function Home() {
 
   const [userId, setUserId] = useState("q_QQ5kBBwlCcbL1s4NVK3g");
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title className="text-2xl ">YelpFriends!</title>
+        <title>YelpFriends!</title>
         <meta name="description" content="YelpFriends: find new friends through mutual connections" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1>Hello, welcome to YelpFriends</h1>
+        <div className="w-screen h-80 justify-between flex items-center flex-col">
+        <h1 className="text-2xl font-bold">Hello, welcome to YelpFriends</h1>
         <LoadData />
         <UserIdInput {...{userId, setUserId}}/>
         <AdjacencyMatrix {...{userId}}/>
         <AdjacencyList {...{userId}}/>
-      </main>
+        </div>
 
     </div>
   )

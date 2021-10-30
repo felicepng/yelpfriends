@@ -15,7 +15,7 @@ const LoadData = () => {
 
     return (
         <div>
-            <button onClick={()=>{initialLoad()}}>Initial Load</button>
+            <button className="border px-2" onClick={()=>initialLoad()}>Initial Load</button>
         </div>
     )
 }

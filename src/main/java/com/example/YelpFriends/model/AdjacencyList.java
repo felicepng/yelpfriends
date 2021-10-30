@@ -1,11 +1,14 @@
 package com.example.YelpFriends.model;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import com.example.YelpFriends.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Component
 public class AdjacencyList {
@@ -20,8 +23,14 @@ public class AdjacencyList {
         List<User> users = userRepository.findAll();
 
         for (User user : users){
-            Set<String> userFriends = user.getFriends();
-            adjList.put(user.getUserId(),new ArrayList<>(userFriends));
+            Set<String> allUserFriends = user.getFriends();
+            ArrayList<String> existingUserFriends = new ArrayList<>();
+            for (String user_ID: allUserFriends){
+                if (userRepository.existsByUserId(user_ID)){
+                    existingUserFriends.add(user_ID);
+                }
+            }
+            adjList.put(user.getUserId(),new ArrayList<>(existingUserFriends));
         }
 
         fullAdjacencyList = adjList;
@@ -70,13 +79,15 @@ public class AdjacencyList {
         ArrayList<String> toBeReturned = fullAdjacencyList.get(userId);
         long endTime = System.nanoTime();
         System.out.println("Time to get first degree from Adjacency List is " + (endTime - startTime) + "ns");
+        System.out.println(toBeReturned.size());
         return toBeReturned;
     }
 
-    public List<String> getSecondDegree(String userId) {
+    public Map<String, Integer> getSecondDegree(String userId) {
         long startTime = System.nanoTime();
-        List<String> list = new ArrayList<>();
+        HashMap<String,Integer> secondDegreeConnections = new HashMap<>();
         List<String> firstDegree = fullAdjacencyList.get(userId);
+
 
         for (String firstDegFriend : firstDegree) {
             Optional<User>firstDegreeFriend  = userRepository.findByUserId(firstDegFriend);
@@ -86,14 +97,21 @@ public class AdjacencyList {
             Set<String> secondDegree = firstDegreeFriend.get().getFriends();
 
             for (String secondDegFriend : secondDegree) {
-                if (!firstDegree.contains(secondDegFriend) && !userId.equals(secondDegFriend)) {
-                    list.add(secondDegFriend);
+                if (!firstDegree.contains(secondDegFriend) && !userId.equals(secondDegFriend) && userRepository.existsByUserId(secondDegFriend)) {
+                    if (secondDegreeConnections.containsKey(secondDegFriend)){
+                        Integer numberOfMutualFriends = secondDegreeConnections.get(secondDegFriend);
+                        secondDegreeConnections.put(secondDegFriend,numberOfMutualFriends+1);
+                    }
+                    else{
+                        secondDegreeConnections.put(secondDegFriend,1);
+                    }
                 }
             }
         }
         long endTime = System.nanoTime();
+        System.out.println(secondDegreeConnections.keySet().size());
         System.out.println("Time taken to get second degree from Adjacency List is " + (endTime - startTime) + "ns");
-        return list;
+        return secondDegreeConnections;
     }
 
     public List<String> getThirdDegree(String userId) {

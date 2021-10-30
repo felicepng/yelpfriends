@@ -3,21 +3,21 @@ import BackendAPI from '../service/BackendAPI'
 
 const LoadData = () => {
 
-    const initialLoad = () => {
-        const response = BackendAPI.initialLoad();
-        response.then(() => {
-            console.log('Success')
-        }).catch((error) => {
-            console.log('Failed')
-            console.log(error)
-        })
-    }
+  const initialLoad = () => {
+    const response = BackendAPI.initialLoad();
+    response.then(() => {
+      console.log('Success')
+    }).catch((error) => {
+      console.log('Failed')
+      console.log(error)
+    })
+  }
 
-    return (
-        <div>
-            <button className="border px-2" onClick={()=>initialLoad()}>Initial Load</button>
-        </div>
-    )
+  return (
+    <div className="border px-4 py-2 bg-white shadow rounded-full cursor-pointer hover:bg-gray-100" onClick={() => initialLoad()}>
+      Initial Load
+    </div>
+  )
 }
 
 export default LoadData

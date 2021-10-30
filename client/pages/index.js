@@ -24,9 +24,10 @@ export default function Home() {
             <img src="/logo.png" className="h-11" />
             <h1 className="text-4xl font-bold">friends</h1>
           </div>
-
-          {/* <LoadData /> */}
-          <UserIdInput {...{ userId, setUserId }} />
+          <div className="flex gap-x-4">
+            <LoadData />
+            <UserIdInput {...{ userId, setUserId }} />
+          </div>
         </div>
 
         <div className="p-8 w-screen">

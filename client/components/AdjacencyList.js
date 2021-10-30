@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import BackendAPI from '../service/BackendAPI'
+import React, { useState } from 'react'
+import BackendAPI from '../service/BackendAPI';
 
-const AdjacencyMatrix = (props) => {
+const AdjacencyList = (props) => {
 
     const {userId} = props;
 
     const [firstDegree, setFirstDegree] = useState([]);
 
     const load = () => {
-        const response = BackendAPI.buildAdjMatrix();
+        const response = BackendAPI.buildAdjList();
         console.log(response);
     }
 
     const getFirstDegree = (userId) => {
-        const response = BackendAPI.getAdjMatrixFirstDegree(userId);
+        const response = BackendAPI.getAdjListFirstDegree(userId);
         response.then((res) => {
             console.log(res)
         }).catch((error) => {
@@ -22,7 +22,7 @@ const AdjacencyMatrix = (props) => {
     }
 
     const getSecondDegree = (userId) => {
-        const response = BackendAPI.getAdjMatrixSecondDegree(userId);
+        const response = BackendAPI.getAdjListSecondDegree(userId);
         response.then((res) => {
             console.log(res)
         }).catch((error) => {
@@ -30,14 +30,12 @@ const AdjacencyMatrix = (props) => {
         })
     }
 
-
-
     return (
         <div>
-            <h1>Adjacency Matrix</h1>
+            <h1>Adjacency List</h1>
             <div className="border border-black">
                 <button className="flex mx-auto"
-                onClick={()=>{load()}}>Load Adjacency Matrix</button>
+                onClick={()=>{load()}}>Load Adjacency List</button>
                 <button className="flex mx-auto"
                 onClick={()=>{getFirstDegree(userId)}}>First Degree Friends</button>
                 <button className="flex mx-auto"
@@ -47,4 +45,4 @@ const AdjacencyMatrix = (props) => {
     )
 }
 
-export default AdjacencyMatrix
+export default AdjacencyList

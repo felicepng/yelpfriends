@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const UserIdInput = (props) => {
 
     const {userId, setUserId} = props;
 
+    const [tempId, setTempId] = useState("");
+
     return (
-        <div className="flex ">
-            <p>User Id: </p>
-            <input value={userId} onChange={(e) => {setUserId(e.target.value)}}/>
+        <div className="">
+            <p>User Id: {userId}</p>
+            <input value={tempId} onChange={(e) => {setTempId(e.target.value)}}/>
+            <button onClick={()=>{setUserId(tempId)}}>Log in</button>
         </div>
     )
 }

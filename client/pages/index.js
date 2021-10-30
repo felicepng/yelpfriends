@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
+import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import UserIdInput from '../components/UserIdInput'
 import styles from '../styles/Home.module.css'
@@ -20,7 +21,8 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Hello, welcome to YelpFriends</h1>
         <UserIdInput {...{userId, setUserId}}/>
-        <AdjacencyMatrix {...{userId, setUserId}}/>
+        <AdjacencyMatrix {...{userId}}/>
+        <AdjacencyList {...{userId}}/>
       </main>
 
       <footer className={styles.footer}>

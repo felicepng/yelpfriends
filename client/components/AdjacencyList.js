@@ -35,7 +35,7 @@ const AdjacencyList = (props) => {
             <h1>Adjacency List</h1>
             <div className="border border-black">
                 <button className="flex mx-auto"
-                onClick={()=>{load()}}>Load Adjacency List</button>
+                onClick={()=>{load()}}>Build Adjacency List</button>
                 <button className="flex mx-auto"
                 onClick={()=>{getFirstDegree(userId)}}>First Degree Friends</button>
                 <button className="flex mx-auto"

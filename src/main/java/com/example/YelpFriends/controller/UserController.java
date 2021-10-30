@@ -7,12 +7,14 @@ import java.util.Set;
 
 import com.example.YelpFriends.model.AdjacencyList;
 import com.example.YelpFriends.model.AdjacencyMatrix;
+import com.example.YelpFriends.model.Tree;
 import com.example.YelpFriends.model.User;
 import com.example.YelpFriends.repository.UserRepository;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,9 @@ public class UserController {
     //To be removed if we dont need /load anymore
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private Tree tree;
 
     @GetMapping("/load")
     public void loadUserData() {
@@ -124,27 +129,33 @@ public class UserController {
     }
 
     //Adjacency List
-    // @GetMapping(value = "/buildTree/{user_id}")
-    // public ResponseEntity<?> buildTree(@PathVariable String user_id){
-    //     adjacencyList.buildAdjacencyList();
-    //     return ResponseEntity.ok(adjacencyList.fullAdjacencyList);
-    // }
+    @GetMapping(value = "/buildTree/{user_id}")
+    public ResponseEntity<?> buildTree(@PathVariable String user_id){
+        tree = new Tree(user_id);
+        if (tree.getRoot() == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(tree);
+    }
 
-    // @GetMapping(value = "/tree/getFirstDegree/{user_id}")
-    // public ResponseEntity<?> loadTreeFirstDegree(@PathVariable String user_id) {
-    //     if (adjacencyList.fullAdjacencyList == null ){
-    //         adjacencyList.buildAdjacencyList();
-    //     }
-    //     return ResponseEntity.ok(adjacencyList.getFirstDegree(user_id));
-    // }
+    @GetMapping(value = "/tree/getFirstDegree/{user_id}")
+    public ResponseEntity<?> loadTreeFirstDegree(@PathVariable String user_id) {
+        // Check if tree is null or 
+        if (tree == null || tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id)){
+            tree = new Tree(user_id);
+        }
+        Set<String> firstDegreeFriends = tree.getFirstDegree();
+        return ResponseEntity.ok(firstDegreeFriends);
+    }
 
-    // @GetMapping(value = "/tree/getSecondDegree/{user_id}")
-    // public ResponseEntity<?> loadTreeSecondDegree(@PathVariable String user_id) {
-    //     if (adjacencyList.fullAdjacencyList == null ){
-    //         adjacencyList.buildAdjacencyList();
-    //     }
-    //     return ResponseEntity.ok(adjacencyList.getSecondDegree(user_id));
-    // }
+    @GetMapping(value = "/tree/getSecondDegree/{user_id}")
+    public ResponseEntity<?> loadTreeSecondDegree(@PathVariable String user_id) {
+        if (tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id) ){
+            tree = new Tree(user_id);
+        }
+        Set<String> secondDegreeFriends = tree.getSecondDegree();
+        return ResponseEntity.ok(secondDegreeFriends);
+    }
 
 
     // public ResponseEntity<HttpStatus> buildMatrix() {

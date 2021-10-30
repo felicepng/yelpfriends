@@ -4,34 +4,45 @@ import java.util.*;
 
 import com.example.YelpFriends.repository.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Tree {
     // @Autowired
     private TreeNode root;
     private Set<String> firstDegFriends = new HashSet<>();
     private Set<String> secondDegFriends = new HashSet<>();
 
-    // @Autowired
+    @Autowired
     UserRepository userRepository;
-    // public Tree(String userId) {
-    // TreeNode root = new TreeNode(userId);
-    // this.root = root;
 
-    // }
+    public Tree() {
 
-    public Tree(User user) {
-        TreeNode root = new TreeNode(user.getUserId());
+    }
+
+    public Tree(String userId) {
+        Optional<User> tempUser = userRepository.findByUserId(userId);
+        if (!tempUser.isPresent()){
+            this.root = null;
+            return;
+        }
+        User user = tempUser.get();
+        TreeNode root = new TreeNode(userId);
         this.root = root;
+        
         for (String firstDegreeFriend : user.getFriends()) {
-            TreeNode friend = new TreeNode(firstDegreeFriend);
-            root.addChildNode(friend);
-            Optional<User> temp = userRepository.findByUserId(firstDegreeFriend);
-            if (!temp.isPresent()) {
+            if (!userRepository.existsByUserId(userId)){
                 continue;
             }
-            User firstDegreeUser = temp.get();
-            for (String secondDegreeFriend : firstDegreeUser.getFriends()) {
-                friend.addChild(secondDegreeFriend);
+            TreeNode friend = new TreeNode(firstDegreeFriend);
+            root.addChildNode(friend);
+            User tempFirstDegreeFriend = userRepository.findByUserId(firstDegreeFriend).get();
+            for (String secondDegreeFriend : tempFirstDegreeFriend.getFriends()) {
+                if(!userRepository.existsByUserId(userId)){
+                    continue;
+                }
+                friend.addChildNode(new TreeNode(secondDegreeFriend));
             }
         }
     }
@@ -69,7 +80,7 @@ public class Tree {
         return depth;
     }
 
-    public Set<String> getSecondDegree(TreeNode root) {
+    public Set<String> getSecondDegree() {
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
@@ -93,7 +104,7 @@ public class Tree {
         return secondDegFriends;
     }
 
-    public Set<String> getFirstDegree(TreeNode root) {
+    public Set<String> getFirstDegree() {
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);

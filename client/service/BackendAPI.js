@@ -5,8 +5,18 @@ const BACKEND_API_URL = "http://localhost:8080";
 class BackendAPI {
 
     // Load the intial data
-    initialLoad = () => {
-        return axios.get(`${BACKEND_API_URL}/load`);
+    initialLoad = async () => {
+        const res = await axios.get(`${BACKEND_API_URL}/load`, {
+            onDownloadProgress: progressEvent_1 => {
+                const total = parseFloat(progressEvent_1.currentTarget.responseHeaders['Content-Length']);
+                const current = progressEvent_1.currentTarget.response.length;
+
+                let percentCompleted = Math.floor(current / total * 100);
+                console.log('completed: ', percentCompleted);
+            }
+        });
+        console.log("Success");
+        return res.data;
     }
 
     // ADJACACENCY MATRIX

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
+import LoadData from '../components/LoadData'
 import UserIdInput from '../components/UserIdInput'
 import styles from '../styles/Home.module.css'
 
@@ -20,6 +21,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Hello, welcome to YelpFriends</h1>
+        <LoadData />
         <UserIdInput {...{userId, setUserId}}/>
         <AdjacencyMatrix {...{userId}}/>
         <AdjacencyList {...{userId}}/>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BACKEND_API_URL = "https://localhost:8080/";
+const BACKEND_API_URL = "http://localhost:8080";
 
 class BackendAPI {
 

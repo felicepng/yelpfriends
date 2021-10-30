@@ -1,50 +1,49 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import BackendAPI from '../service/BackendAPI'
 
 const AdjacencyMatrix = (props) => {
+  const { userId } = props;
+  const [firstDegree, setFirstDegree] = useState([]);
 
-    const {userId} = props;
+  const load = () => {
+    const response = BackendAPI.buildAdjMatrix();
+    console.log(response);
+  }
 
-    const [firstDegree, setFirstDegree] = useState([]);
+  const getFirstDegree = (userId) => {
+    const response = BackendAPI.getAdjMatrixFirstDegree(userId);
+    response.then((res) => {
+      console.log(res)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
 
-    const load = () => {
-        const response = BackendAPI.buildAdjMatrix();
-        console.log(response);
-    }
+  const getSecondDegree = (userId) => {
+    const response = BackendAPI.getAdjMatrixSecondDegree(userId);
+    response.then((res) => {
+      console.log(res)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
 
-    const getFirstDegree = (userId) => {
-        const response = BackendAPI.getAdjMatrixFirstDegree(userId);
-        response.then((res) => {
-            console.log(res)
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-
-    const getSecondDegree = (userId) => {
-        const response = BackendAPI.getAdjMatrixSecondDegree(userId);
-        response.then((res) => {
-            console.log(res)
-        }).catch((error) => {
-            console.log(error)
-        })
-    }
-
-
-
-    return (
-        <div>
-            <h1 className="text-2xl font-bold">Adjacency Matrix</h1>
-            <div className="flex gap-x-4">
-                <button className="border px-2"
-                onClick={()=>{load()}}>Build Adjacency Matrix</button>
-                <button className="border px-2"
-                onClick={()=>{getFirstDegree(userId)}}>First Degree Friends</button>
-                <button className="border px-2"
-                onClick={()=>{getSecondDegree(userId)}}>Second Degree Friends</button>
-            </div>
-        </div>
-    )
+  return (
+    <div className="h-20 grid grid-cols-4 gap-x-4">
+      <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
+        Using Adjacency Matrix
+      </div>
+      <div onClick={() => load()} className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
+        <img src="/playButton.png" className="h-7" />
+      </div>
+      <div onClick={() => getFirstDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
+        <img src="/playButton.png" className="h-7" />
+      </div>
+      <div onClick={() => getSecondDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
+        <img src="/playButton.png" className="h-7" />
+      </div>
+    </div>
+  )
 }
 
 export default AdjacencyMatrix

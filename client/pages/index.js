@@ -29,8 +29,6 @@ export default function Home() {
           <UserIdInput {...{ userId, setUserId }} />
         </div>
 
-        {/* <AdjacencyMatrix {...{ userId }} />
-        <AdjacencyList {...{ userId }} /> */}
         <div className="p-8 w-screen">
           <div className="grid grid-cols-4 gap-x-8">
             <div className="p-6 bg-gray-50 rounded-3xl col-span-2 gap-y-4">
@@ -47,34 +45,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="grid grid-rows-3 gap-y-4">
-                <div className="h-20 grid grid-cols-4 gap-x-4">
-                  <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
-                    Using Adjacency Matrix
-                  </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 gap-x-4">
-                  <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
-                    Using Adjacency List
-                  </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                  <div className="flex items-center justify-center bg-white shadow hover:bg-gray-100 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                </div>
+                <AdjacencyMatrix {...{ userId }} />
+                <AdjacencyList {...{ userId }} />
                 <div className="grid grid-cols-4 gap-x-4">
                   <div className="flex items-center text-sm text-gray-500 font-semibold">
                     Using Tree
@@ -112,7 +84,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

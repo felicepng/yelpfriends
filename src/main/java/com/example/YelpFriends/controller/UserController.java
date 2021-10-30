@@ -16,10 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class UserController {
 
@@ -80,6 +82,7 @@ public class UserController {
     public ResponseEntity<?> loadAdjMat() {
        adjacencyMatrix.buildAdjacencyMatrix();
        return ResponseEntity.ok(adjacencyMatrix.fullAdjacency);
+        // return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //q_QQ5kBBwlCcbL1s4NVK3g

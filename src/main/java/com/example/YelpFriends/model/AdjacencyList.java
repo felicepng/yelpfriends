@@ -9,29 +9,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AdjacencyList {
-     @Autowired
+    @Autowired
     public UserRepository userRepository;
 
     public Map<String, ArrayList<String>> fullAdjacencyList;
 
-    // TODO: Populate list with user data from db
     public void buildAdjacencyList() {
         long startTime = System.nanoTime();
         HashMap<String,ArrayList<String>> adjList = new HashMap<>();
         List<User> users = userRepository.findAll();
+
         for (User user : users){
             Set<String> userFriends = user.getFriends();
             adjList.put(user.getUserId(),new ArrayList<>(userFriends));
         }
+
         fullAdjacencyList = adjList;
         long endTime = System.nanoTime();
         System.out.println("Time taken to build Adjacency List is " + (endTime - startTime) + "ns");
-        // int lenOfUsers = users.size();
-
-        // for (User user : users) {
-        //     ArrayList<String> friends = user.getFriends();
-
-        // }
     }
 
     public void printAdjacencyList() {

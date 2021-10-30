@@ -13,6 +13,7 @@ public class TreeNode {
         this.numChildren = 0;
     }
 
+    //TODO: Make sure the parent recursion is settled
     public TreeNode(String userId, TreeNode parent) {
         this.parent = parent;
         this.userId = userId;

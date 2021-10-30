@@ -21,7 +21,8 @@ public class Tree {
 
     }
 
-    public Tree(String userId) {
+    //TODO: Make sure the parent recursion is settled
+    public void buildTree(String userId) {
         Optional<User> tempUser = userRepository.findByUserId(userId);
         if (!tempUser.isPresent()){
             this.root = null;
@@ -32,17 +33,17 @@ public class Tree {
         this.root = root;
         
         for (String firstDegreeFriend : user.getFriends()) {
-            if (!userRepository.existsByUserId(userId)){
+            if (!userRepository.existsByUserId(firstDegreeFriend)){
                 continue;
             }
-            TreeNode friend = new TreeNode(firstDegreeFriend);
+            TreeNode friend = new TreeNode(firstDegreeFriend,root);
             root.addChildNode(friend);
             User tempFirstDegreeFriend = userRepository.findByUserId(firstDegreeFriend).get();
             for (String secondDegreeFriend : tempFirstDegreeFriend.getFriends()) {
                 if(!userRepository.existsByUserId(userId)){
                     continue;
                 }
-                friend.addChildNode(new TreeNode(secondDegreeFriend));
+                friend.addChildNode(new TreeNode(secondDegreeFriend,friend));
             }
         }
     }

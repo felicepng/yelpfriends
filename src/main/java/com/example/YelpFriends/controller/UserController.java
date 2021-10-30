@@ -131,7 +131,7 @@ public class UserController {
     //Adjacency List
     @GetMapping(value = "/buildTree/{user_id}")
     public ResponseEntity<?> buildTree(@PathVariable String user_id){
-        tree = new Tree(user_id);
+        tree.buildTree(user_id);
         if (tree.getRoot() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -142,7 +142,7 @@ public class UserController {
     public ResponseEntity<?> loadTreeFirstDegree(@PathVariable String user_id) {
         // Check if tree is null or 
         if (tree == null || tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id)){
-            tree = new Tree(user_id);
+            tree.buildTree(user_id);
         }
         Set<String> firstDegreeFriends = tree.getFirstDegree();
         return ResponseEntity.ok(firstDegreeFriends);
@@ -151,7 +151,7 @@ public class UserController {
     @GetMapping(value = "/tree/getSecondDegree/{user_id}")
     public ResponseEntity<?> loadTreeSecondDegree(@PathVariable String user_id) {
         if (tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id) ){
-            tree = new Tree(user_id);
+            tree.buildTree(user_id);
         }
         Set<String> secondDegreeFriends = tree.getSecondDegree();
         return ResponseEntity.ok(secondDegreeFriends);

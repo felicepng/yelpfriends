@@ -8,7 +8,7 @@ import UserIdInput from '../components/UserIdInput'
 import Tree from '../components/Tree'
 import FirstDegree from '../components/FirstDegree'
 import SecondDegree from '../components/SecondDegree'
-import { Modal } from 'antd';
+import { Modal, Tooltip } from 'antd';
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
 
 export default function Home() {
@@ -35,11 +35,12 @@ export default function Home() {
         </Modal>
         <div className="w-screen h-40 flex flex-col items-center justify-center bg-theme">
           <div className="mb-4 flex justify-center items-center gap-x-4">
-          <div className="flex items-center" >
-            <img src="/logo.png" className="h-16" />
-          </div>
-          
-          <BsFillQuestionCircleFill className="h-8 w-8 text-gray-900 hover:text-red-600 cursor-pointer" onClick={() => setIsModalOpen(true)}/>
+            <div className="flex items-center" >
+              <img src="/logo.png" className="h-16" />
+            </div>
+            <Tooltip placement="right" title="Need help?">
+              <BsFillQuestionCircleFill className="h-8 w-8 text-gray-900 hover:text-red-600 cursor-pointer" onClick={() => setIsModalOpen(true)} />
+            </Tooltip>
           </div>
           <div className="flex gap-x-4">
             <LoadData />

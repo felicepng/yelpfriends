@@ -145,7 +145,7 @@ public class UserController {
         if (tree == null || tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id)){
             tree.buildTree(user_id);
         }
-        Set<String> firstDegreeFriends = tree.getFirstDegree();
+        Set<String> firstDegreeFriends = tree.findFirstDegree();
         return ResponseEntity.ok(firstDegreeFriends);
     }
 
@@ -154,7 +154,7 @@ public class UserController {
         if (tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id) ){
             tree.buildTree(user_id);
         }
-        Map<String, Integer> secondDegreeFriends = tree.getSecondDegree();
+        Map<String, Integer> secondDegreeFriends = tree.findSecondDegree();
         return ResponseEntity.ok(secondDegreeFriends);
     }
 

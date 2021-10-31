@@ -3,6 +3,7 @@ package com.example.YelpFriends.model;
 import java.util.*;
 
 import com.example.YelpFriends.repository.UserRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,11 @@ import org.springframework.stereotype.Component;
 public class Tree {
     // @Autowired
     private TreeNode root;
+
+    @JsonIgnore
     private Set<String> firstDegFriends = new HashSet<>();
+
+    @JsonIgnore
     private Map<String, Integer> secondDegFriends = new HashMap<>();
 
     @Autowired
@@ -21,8 +26,8 @@ public class Tree {
 
     }
 
-    //TODO: Make sure the parent recursion is settled
     public void buildTree(String userId) {
+        long startTime = System.nanoTime();
         Optional<User> tempUser = userRepository.findByUserId(userId);
         if (!tempUser.isPresent()){
             this.root = null;
@@ -46,6 +51,8 @@ public class Tree {
                 friend.addChildNode(new TreeNode(secondDegreeFriend,friend));
             }
         }
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to build a Tree is " + (endTime - startTime) + "ns");
     }
 
     public TreeNode getRoot() {
@@ -81,7 +88,9 @@ public class Tree {
         return depth;
     }
 
-    public Map<String, Integer> getSecondDegree() {
+    public Map<String, Integer> findSecondDegree() {
+        long startTime = System.nanoTime();
+
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
@@ -110,10 +119,14 @@ public class Tree {
             }
         }
 
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to get second degree from Tree is " + (endTime - startTime) + "ns");
         return secondDegFriends;
     }
 
-    public Set<String> getFirstDegree() {
+    public Set<String> findFirstDegree() {
+        long startTime = System.nanoTime();
+        
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
@@ -133,6 +146,8 @@ public class Tree {
             }
         }
 
+        long endTime = System.nanoTime();
+        System.out.println("Time taken to get first degree from Tree is " + (endTime - startTime) + "ns");
         return firstDegFriends;
     }
 

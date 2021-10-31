@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UserLogo from "./UserLogo";
 
 const UserCard = () => {
   const [clicked, setClicked] = useState(false)
@@ -6,7 +7,7 @@ const UserCard = () => {
   return (
     <div className="bg-white shadow rounded-2xl h-14 mb-4 px-3 w-full flex justify-between items-center">
       <div className="flex items-center">
-        <img src={`/users/${Math.floor(Math.random() * 10)}.png`} className="h-10 mr-1" />
+        <UserLogo />
         <div className="text-gray-500">q_QQ5kBBwlCcbL1s4NVK3g</div>
       </div>
 

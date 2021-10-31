@@ -1,8 +1,10 @@
 import React from 'react'
+import UserCard from './UserCard';
 
 const SecondDegree = (props) => {
 
     const {secondDegree} = props;
+    const allKeys = Object.keys(secondDegree)
 
     return (
         <div className="p-6 bg-gray-50 rounded-3xl col-span-1">
@@ -18,9 +20,11 @@ const SecondDegree = (props) => {
                     //     )
                     // }
                     // )
-                    // secondDegree?.map(value => {
-                    //     console.log(value);
-                    // })
+                    allKeys?.map(key => {
+
+                        // console.log(secondDegree[key]);
+                        return(<UserCard userId={key} mutualFriends = {secondDegree[key]}/>)
+                    })
                 }
                 {
                     secondDegree === {} &&

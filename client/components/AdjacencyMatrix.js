@@ -28,7 +28,7 @@ const AdjacencyMatrix = (props) => {
         setSecondDegree([])
         const response = BackendAPI.getAdjMatrixSecondDegree(userId);
         response.then((res) => {
-            console.log(res)
+            console.log(res.data["0AF4FMEq9kzzHbEjEk9Geg"])
             setSecondDegree(res.data)
         }).catch((error) => {
             console.log(error)

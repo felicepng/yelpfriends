@@ -69,7 +69,7 @@ export default function Home() {
             <div className="col-span-3 grid grid-cols-2 gap-x-8">
               <FirstDegree {...{ firstDegree }} />
               <DegFriends title="2nd Degree Friends" />
-              {/* <SecondDegree {...{ secondDegree }} /> */}
+              <SecondDegree {...{ secondDegree }} />
             </div>
             <button onClick={() => { console.log(firstDegree) }} >Check first deg </button>
             <button onClick={() => { console.log(secondDegree) }} >Check second deg </button>

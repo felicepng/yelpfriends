@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import BackendAPI from '../service/BackendAPI';
 
 const AdjacencyList = (props) => {
-    const { userId } = props;
-    const [firstDegree, setFirstDegree] = useState([]);
+    const { userId, setFirstDegree, setSecondDegree } = props;
 
     const load = () => {
         const response = BackendAPI.buildAdjList();
@@ -15,18 +14,22 @@ const AdjacencyList = (props) => {
     }
 
     const getFirstDegree = (userId) => {
+        setFirstDegree([])
         const response = BackendAPI.getAdjListFirstDegree(userId);
         response.then((res) => {
             console.log(res)
+            setFirstDegree(res.data)
         }).catch((error) => {
             console.log(error)
         })
     }
 
     const getSecondDegree = (userId) => {
+        setSecondDegree([])
         const response = BackendAPI.getAdjListSecondDegree(userId);
         response.then((res) => {
             console.log(res)
+            setSecondDegree(res.data)
         }).catch((error) => {
             console.log(error)
         })

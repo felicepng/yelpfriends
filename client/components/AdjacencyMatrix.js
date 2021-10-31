@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import BackendAPI from '../service/BackendAPI'
 
 const AdjacencyMatrix = (props) => {
-    const { userId } = props;
-    const [firstDegree, setFirstDegree] = useState([]);
+    const { userId, setFirstDegree, setSecondDegree } = props;
 
     const load = () => {
         const response = BackendAPI.buildAdjMatrix();
@@ -15,18 +14,22 @@ const AdjacencyMatrix = (props) => {
     }
 
     const getFirstDegree = (userId) => {
+        setFirstDegree([])
         const response = BackendAPI.getAdjMatrixFirstDegree(userId);
         response.then((res) => {
             console.log(res)
+            setFirstDegree(res.data)
         }).catch((error) => {
             console.log(error)
         })
     }
 
     const getSecondDegree = (userId) => {
+        setSecondDegree([])
         const response = BackendAPI.getAdjMatrixSecondDegree(userId);
         response.then((res) => {
             console.log(res)
+            setSecondDegree(res.data)
         }).catch((error) => {
             console.log(error)
         })

@@ -11,6 +11,8 @@ import Tree from '../components/Tree'
 export default function Home() {
 
   const [userId, setUserId] = useState("q_QQ5kBBwlCcbL1s4NVK3g");
+  const [firstDegree, setFirstDegree] = useState([]);
+  const [secondDegree, setSecondDegree] = useState([]);
 
   return (
     <div>
@@ -48,9 +50,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="grid grid-rows-3 gap-y-4">
-                <AdjacencyMatrix {...{ userId }} />
-                <AdjacencyList {...{ userId }} />
-                <Tree {...{ userId }} />
+                <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree }} />
+                <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree }} />
+                <Tree {...{ userId, setFirstDegree, setSecondDegree }} />
               </div>
 
               <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">

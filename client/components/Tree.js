@@ -3,7 +3,7 @@ import BackendAPI from '../service/BackendAPI';
 
 const Tree = (props) => {
 
-    const { userId } = props;
+    const { userId, setFirstDegree, setSecondDegree } = props;
 
     const load = (userId) => {
         const response = BackendAPI.buildTree(userId);
@@ -15,18 +15,22 @@ const Tree = (props) => {
     }
 
     const getFirstDegree = (userId) => {
+        setFirstDegree([])
         const response = BackendAPI.getTreeFirstDegree(userId);
         response.then((res) => {
             console.log(res)
+            setFirstDegree(res.data);
         }).catch((error) => {
             console.log(error)
         })
     }
 
     const getSecondDegree = (userId) => {
+        setSecondDegree([])
         const response = BackendAPI.getTreeSecondDegree(userId);
         response.then((res) => {
             console.log(res)
+            setSecondDegree(res.data)
         }).catch((error) => {
             console.log(error)
         })

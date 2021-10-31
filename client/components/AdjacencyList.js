@@ -29,17 +29,17 @@ const AdjacencyList = (props) => {
   }
 
   return (
-    <div className="grid grid-cols-4 gap-x-4">
+    <div className="grid grid-cols-7 gap-x-4">
       <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
         Using Adjacency List
       </div>
-      <div onClick={() => load()} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
+      <div onClick={() => load()} className="flex col-span-2 items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
         <img src="/playButton.png" className="h-7" />
       </div>
-      <div onClick={() => getFirstDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
+      <div onClick={() => getFirstDegree(userId)} className="flex col-span-2 items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
         <img src="/playButton.png" className="h-7" />
       </div>
-      <div onClick={() => getSecondDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
+      <div onClick={() => getSecondDegree(userId)} className="flex col-span-2 items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
         <img src="/playButton.png" className="h-7" />
       </div>
     </div>

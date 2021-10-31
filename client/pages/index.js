@@ -6,6 +6,7 @@ import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import LoadData from '../components/LoadData'
 import UserIdInput from '../components/UserIdInput'
 import DegFriends from '../components/DegFriends'
+import Tree from '../components/Tree'
 
 export default function Home() {
 
@@ -49,20 +50,7 @@ export default function Home() {
               <div className="grid grid-rows-3 gap-y-4">
                 <AdjacencyMatrix {...{ userId }} />
                 <AdjacencyList {...{ userId }} />
-                <div className="grid grid-cols-7 gap-x-4">
-                  <div className="flex items-center text-sm text-gray-500 font-semibold">
-                    Using Tree
-                  </div>
-                  <div className="flex items-center col-span-2 justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                  <div className="flex items-center col-span-2 justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                  <div className="flex items-center col-span-2 justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-                    <img src="/playButton.png" className="h-7" />
-                  </div>
-                </div>
+                <Tree {...{ userId }} />
               </div>
 
               <div className="border-t-2 pt-5 mt-6 grid grid-cols-7 gap-x-4">

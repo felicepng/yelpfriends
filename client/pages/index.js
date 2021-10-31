@@ -83,7 +83,6 @@ export default function Home() {
               <FirstDegree {...{ firstDegree }} />
               <SecondDegree {...{ secondDegree }} />
             </div>
-            <button onClick={()=>{console.log(secondDegree)}}>Check second degree</button>
           </div>
         </div>
       </div>

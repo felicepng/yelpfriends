@@ -6,7 +6,10 @@ const UserCard = (props) => {
         <div>
           <div className="text-gray-500 text-xs font-bold">USER ID</div>
           <div className="text-gray-500 text-sm">{props.userId}</div>
-          <div className="text-gray-500 text-sm">{props.mutualFriends}</div>
+          {
+            props?.mutualFriends && 
+            <div className="text-gray-500 text-sm">{props.mutualFriends} mutual friends</div>
+          }
         </div>
       </div>
       <div className="flex items-center bg-theme rounded-full text-white pb-1 px-2 cursor-pointer hover:bg-gray-400">

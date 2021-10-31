@@ -76,8 +76,7 @@ public class AdjacencyList {
         long startTime = System.nanoTime();
         ArrayList<String> toBeReturned = fullAdjacencyList.get(userId);
         long endTime = System.nanoTime();
-        System.out.println("Time to get first degree from Adjacency List is " + (endTime - startTime) + "ns");
-        System.out.println(toBeReturned.size());
+        System.out.println("Time taken to get first degree from Adjacency List is " + (endTime - startTime) + "ns");
         return toBeReturned;
     }
 
@@ -107,7 +106,6 @@ public class AdjacencyList {
             }
         }
         long endTime = System.nanoTime();
-        System.out.println(secondDegreeConnections.keySet().size());
         System.out.println("Time taken to get second degree from Adjacency List is " + (endTime - startTime) + "ns");
         return secondDegreeConnections;
     }

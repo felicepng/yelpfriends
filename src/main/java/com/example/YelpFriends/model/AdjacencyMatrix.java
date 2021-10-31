@@ -131,7 +131,6 @@ public class AdjacencyMatrix {
                 }
             }
         }
-        System.out.println(secondDegree.keySet().size());
         long endTime = System.nanoTime();
         System.out.println("Time taken to get second degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
         return secondDegree;

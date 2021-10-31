@@ -7,7 +7,11 @@ const Tree = (props) => {
 
     const load = (userId) => {
         const response = BackendAPI.buildTree(userId);
-        console.log(response);
+        response.then((res) => {
+            console.log(res)
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     const getFirstDegree = (userId) => {

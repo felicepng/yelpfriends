@@ -91,6 +91,8 @@ public class Tree {
     public Map<String, Integer> findSecondDegree() {
         long startTime = System.nanoTime();
 
+        secondDegFriends = new HashMap<>();
+
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);

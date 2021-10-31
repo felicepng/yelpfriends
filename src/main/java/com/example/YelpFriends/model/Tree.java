@@ -40,7 +40,7 @@ public class Tree {
             root.addChildNode(friend);
             User tempFirstDegreeFriend = userRepository.findByUserId(firstDegreeFriend).get();
             for (String secondDegreeFriend : tempFirstDegreeFriend.getFriends()) {
-                if(!userRepository.existsByUserId(userId)){
+                if(!userRepository.existsByUserId(secondDegreeFriend) || root.getUserId().equals(secondDegreeFriend)){
                     continue;
                 }
                 friend.addChildNode(new TreeNode(secondDegreeFriend,friend));

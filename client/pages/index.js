@@ -5,16 +5,18 @@ import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import LoadData from '../components/LoadData'
 import UserIdInput from '../components/UserIdInput'
-import DegFriends from '../components/DegFriends'
 import Tree from '../components/Tree'
 import FirstDegree from '../components/FirstDegree'
 import SecondDegree from '../components/SecondDegree'
+import { Modal } from 'antd';
+import { BsFillQuestionCircleFill } from 'react-icons/bs'
 
 export default function Home() {
 
   const [userId, setUserId] = useState("q_QQ5kBBwlCcbL1s4NVK3g");
   const [firstDegree, setFirstDegree] = useState([]);
   const [secondDegree, setSecondDegree] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div>
@@ -25,9 +27,19 @@ export default function Home() {
       </Head>
 
       <div className="w-screen justify-between flex items-center flex-col">
+        <Modal title="How to use" visible={isModalOpen} centered closeable footer={null} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+          <div>Instructions...</div>
+          <div>Instructions...</div>
+          <div>Instructions...</div>
+          <div>Instructions...</div>
+        </Modal>
         <div className="w-screen h-40 flex flex-col items-center justify-center bg-theme">
-          <div className="mb-4 gap-x-1 flex items-center">
+          <div className="mb-4 flex justify-center items-center gap-x-4">
+          <div className="flex items-center" >
             <img src="/logo.png" className="h-16" />
+          </div>
+          
+          <BsFillQuestionCircleFill className="h-8 w-8 text-gray-900 hover:text-red-600 cursor-pointer" onClick={() => setIsModalOpen(true)}/>
           </div>
           <div className="flex gap-x-4">
             <LoadData />

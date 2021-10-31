@@ -15,7 +15,7 @@ export default function Home() {
 
   const [userId, setUserId] = useState("q_QQ5kBBwlCcbL1s4NVK3g");
   const [firstDegree, setFirstDegree] = useState([]);
-  const [secondDegree, setSecondDegree] = useState({});
+  const [secondDegree, setSecondDegree] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -83,7 +83,7 @@ export default function Home() {
               <FirstDegree {...{ firstDegree }} />
               <SecondDegree {...{ secondDegree }} />
             </div>
-
+            <button onClick={()=>{console.log(secondDegree)}}>Check second degree</button>
           </div>
         </div>
       </div>

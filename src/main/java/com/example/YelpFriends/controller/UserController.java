@@ -2,7 +2,11 @@ package com.example.YelpFriends.controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -102,7 +106,7 @@ public class UserController {
         if (adjacencyMatrix.fullAdjacency == null ){
             adjacencyMatrix.buildAdjacencyMatrix();
         }
-        return ResponseEntity.ok(adjacencyMatrix.getSecondDegree(user_id));
+        return ResponseEntity.ok(sortMap(adjacencyMatrix.getSecondDegree(user_id)));
     }
 
 
@@ -126,7 +130,7 @@ public class UserController {
         if (adjacencyList.fullAdjacencyList == null ){
             adjacencyList.buildAdjacencyList();
         }
-        return ResponseEntity.ok(adjacencyList.getSecondDegree(user_id));
+        return ResponseEntity.ok(sortMap(adjacencyList.getSecondDegree(user_id)));
     }
 
     //Adjacency List
@@ -155,7 +159,20 @@ public class UserController {
             tree.buildTree(user_id);
         }
         Map<String, Integer> secondDegreeFriends = tree.findSecondDegree();
-        return ResponseEntity.ok(secondDegreeFriends);
+        // return ResponseEntity.ok(secondDegreeFriends);
+        return ResponseEntity.ok(sortMap(secondDegreeFriends));
+    }
+
+    private List<Map.Entry<String,Integer>> sortMap(Map<String, Integer> secondDegMap) {
+        List<Map.Entry<String,Integer>> list = new ArrayList<>(secondDegMap.entrySet());
+
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1,Map.Entry<String, Integer> o2){
+                return (o2.getValue()).compareTo(o1.getValue()); 
+            }
+        });
+
+        return list;
     }
 
 

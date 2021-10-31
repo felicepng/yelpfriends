@@ -22,7 +22,7 @@ const FirstDegree = (props) => {
                 }
                 {
                     firstDegree.length == 0 &&
-                    <div className="px-10 flex text-gray-500 font-semibold items-center h-full text-center">
+                    <div className="flex text-gray-500 font-semibold items-center h-full text-center">
                         Get 1st degree connections using any of the implementations!
                     </div>
                 }

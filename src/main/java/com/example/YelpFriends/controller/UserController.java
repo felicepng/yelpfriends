@@ -40,7 +40,7 @@ public class UserController {
     private Tree tree;
 
     @GetMapping("/load")
-    public void loadUserData() {
+    public ResponseEntity<?> loadUserData() {
 		JSONParser parser = new JSONParser();
 
         BufferedReader br = null;
@@ -49,7 +49,7 @@ public class UserController {
             String sCurrentLine;
             br = new BufferedReader(new FileReader("src/main/resources/yelp_academic_dataset_user.json"));
 
-            while ((sCurrentLine = br.readLine()) != null) {
+            while ((sCurrentLine = br.readLine()) != null && count < 15000) {
                 // JSONObject jsonobject = (JSONObject) new JSONParser().parse(sCurrentLine);
                 count += 1;
                 System.out.println(count);
@@ -78,7 +78,7 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(count);
+        return ResponseEntity.ok().build();
 	}
 
     //Adj Matrix

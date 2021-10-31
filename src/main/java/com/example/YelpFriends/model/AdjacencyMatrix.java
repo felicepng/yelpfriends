@@ -61,8 +61,8 @@ public class AdjacencyMatrix {
 
             }
         }
-        long endTime = System.nanoTime();
         this.size = lenOfUsers+1;
+        long endTime = System.nanoTime();
         System.out.println("Time taken to build an Adjacency Matrix is " + (endTime - startTime) + "ns");
     }
 
@@ -95,7 +95,6 @@ public class AdjacencyMatrix {
         }
         long endTime = System.nanoTime();
         System.out.println("Time taken to get first degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
-        System.out.println(firstDegree.size());
         return firstDegree;
     }
 

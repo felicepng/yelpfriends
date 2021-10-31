@@ -33,7 +33,7 @@ public class AdjacencyList {
 
         fullAdjacencyList = adjList;
         long endTime = System.nanoTime();
-        System.out.println("Time taken to build Adjacency List is " + (endTime - startTime) + "ns");
+        System.out.println("Time taken to build an Adjacency List is " + (endTime - startTime) + "ns");
     }
 
     public void printAdjacencyList() {

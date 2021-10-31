@@ -1,8 +1,11 @@
 package com.example.YelpFriends.model;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class TreeNode {
     private String userId;
+    @JsonIgnore
     private TreeNode parent;
     private int numChildren;
     private List<TreeNode> children;

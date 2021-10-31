@@ -3,6 +3,7 @@ package com.example.YelpFriends.controller;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import com.example.YelpFriends.model.AdjacencyList;
@@ -153,7 +154,7 @@ public class UserController {
         if (tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id) ){
             tree.buildTree(user_id);
         }
-        Set<String> secondDegreeFriends = tree.getSecondDegree();
+        Map<String, Integer> secondDegreeFriends = tree.getSecondDegree();
         return ResponseEntity.ok(secondDegreeFriends);
     }
 

@@ -12,7 +12,7 @@ public class Tree {
     // @Autowired
     private TreeNode root;
     private Set<String> firstDegFriends = new HashSet<>();
-    private Set<String> secondDegFriends = new HashSet<>();
+    private Map<String, Integer> secondDegFriends = new HashMap<>();
 
     @Autowired
     UserRepository userRepository;
@@ -40,7 +40,7 @@ public class Tree {
             root.addChildNode(friend);
             User tempFirstDegreeFriend = userRepository.findByUserId(firstDegreeFriend).get();
             for (String secondDegreeFriend : tempFirstDegreeFriend.getFriends()) {
-                if(!userRepository.existsByUserId(userId)){
+                if(!userRepository.existsByUserId(secondDegreeFriend) || root.getUserId().equals(secondDegreeFriend)){
                     continue;
                 }
                 friend.addChildNode(new TreeNode(secondDegreeFriend,friend));
@@ -81,7 +81,7 @@ public class Tree {
         return depth;
     }
 
-    public Set<String> getSecondDegree() {
+    public Map<String, Integer> getSecondDegree() {
         // BFS
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
@@ -92,7 +92,15 @@ public class Tree {
 
             // add if depth is 2 and if not already in first deg list
             if(depth(tempNode) == 2 && !firstDegFriends.contains(tempNode.getUserId())) {
-                secondDegFriends.add(tempNode.getUserId());
+                // check if second deg friend exists in map 
+                if (secondDegFriends.containsKey(tempNode.getUserId())) {
+                    // increase mutual friends count by 1
+                    int mutualFriends = secondDegFriends.get(tempNode.getUserId());
+                    secondDegFriends.put(tempNode.getUserId(), mutualFriends + 1);
+                } else {
+                    // put second deg friend in map with mutual friend count 1
+                    secondDegFriends.put(tempNode.getUserId(), 1);
+                }
             }
 
             List<TreeNode> children = tempNode.getChildren();

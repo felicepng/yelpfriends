@@ -9,7 +9,6 @@ import DegFriends from '../components/DegFriends'
 import Tree from '../components/Tree'
 import FirstDegree from '../components/FirstDegree'
 import SecondDegree from '../components/SecondDegree'
-import { FaBeer } from 'react-icons/fa';
 
 export default function Home() {
 
@@ -29,8 +28,6 @@ export default function Home() {
         <div className="w-screen h-40 flex flex-col items-center justify-center bg-theme">
           <div className="mb-4 gap-x-1 flex items-center">
             <img src="/logo.png" className="h-16" />
-            {/* <h1 className="text-4xl font-bold">friends</h1> */}
-            <FaBeer />
           </div>
           <div className="flex gap-x-4">
             <LoadData />

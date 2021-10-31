@@ -9,7 +9,7 @@ const SecondDegree = (props) => {
             <div className="flex items-center text-gray-500 font-semibold">
                 2nd Degree Friends
             </div>
-            <div className="mt-6 mb-2 h-96 overflow-y-scroll">
+            <div className="mt-6 mb-2 h-96 overflow-y-scroll scrollbar-hide">
                 {
                     // secondDegree. ((value, key) => {
                     //     console.log(value);

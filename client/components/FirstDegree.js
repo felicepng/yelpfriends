@@ -10,7 +10,7 @@ const FirstDegree = (props) => {
             <div className="flex items-center text-gray-500 font-semibold">
                 1st Degree Friends
             </div>
-            <div className="mt-6 mb-2 h-96 overflow-y-scroll">
+            <div className="mt-6 mb-2 h-96 overflow-y-scroll scrollbar-hide">
                 {
                     firstDegree?.map((friend, index) => {
                         // console.log(friend);
@@ -22,7 +22,7 @@ const FirstDegree = (props) => {
                 }
                 {
                     firstDegree.length == 0 &&
-                    <div className="flex text-gray-500 font-semibold items-center h-full text-center">
+                    <div className="px-10 flex text-gray-500 font-semibold items-center h-full text-center">
                         Get 1st degree connections using any of the implementations!
                     </div>
                 }

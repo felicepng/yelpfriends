@@ -13,21 +13,13 @@ const SecondDegree = (props) => {
             </div>
             <div className="mt-6 mb-2 h-96 overflow-y-scroll scrollbar-hide">
                 {
-                    // secondDegree. ((value, key) => {
-                    //     console.log(value);
-                    //     return (
-                    //         <UserCard key={key}/>
-                    //     )
-                    // }
-                    // )
-                    allKeys?.map(key => {
-
+                    allKeys?.map((key,index) => {
                         // console.log(secondDegree[key]);
-                        return(<UserCard userId={key} mutualFriends = {secondDegree[key]}/>)
+                        return(<UserCard key={index} userId={key} mutualFriends = {secondDegree[key]}/>)
                     })
                 }
                 {
-                    secondDegree === {} &&
+                    allKeys.length == 0 &&
                     <div className="flex text-gray-500 font-semibold items-center h-full text-center">
                         Get 2nd degree connections using any of the implementations!
                     </div>

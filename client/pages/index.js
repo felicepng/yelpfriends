@@ -32,17 +32,17 @@ export default function Home() {
         </div>
 
         <div className="p-8 w-screen">
-          <div className="grid grid-cols-4 gap-x-8">
+          <div className="grid grid-cols-5 gap-x-8">
             <div className="p-6 bg-gray-50 rounded-3xl col-span-2 gap-y-4">
               <div className="grid grid-cols-4 gap-x-4 mb-3">
                 <div />
-                <div className="text-sm text-gray-400 font-semibold px-4 text-center">
+                <div className="text-sm text-gray-400 font-semibold px-0 text-center">
                   Populate data
                 </div>
-                <div className="text-sm text-gray-400 font-semibold px-4 text-center">
+                <div className="text-sm text-gray-400 font-semibold px-0 text-center">
                   Get 1st degree friends
                 </div>
-                <div className="text-sm text-gray-400 font-semibold px-4 text-center">
+                <div className="text-sm text-gray-400 font-semibold px-0 text-center">
                   Get 2nd degree friends
                 </div>
               </div>
@@ -75,8 +75,10 @@ export default function Home() {
               </div>
             </div>
 
-            <DegFriends title="1st Degree Friends" />
-            <DegFriends title="2nd Degree Friends" />
+            <div className="col-span-3 grid grid-cols-2 gap-x-8">
+              <DegFriends title="1st Degree Friends" />
+              <DegFriends title="2nd Degree Friends" />
+            </div>
 
           </div>
         </div>

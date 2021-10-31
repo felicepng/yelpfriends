@@ -7,12 +7,14 @@ import LoadData from '../components/LoadData'
 import UserIdInput from '../components/UserIdInput'
 import DegFriends from '../components/DegFriends'
 import Tree from '../components/Tree'
+import FirstDegree from '../components/FirstDegree'
+import SecondDegree from '../components/SecondDegree'
 
 export default function Home() {
 
   const [userId, setUserId] = useState("q_QQ5kBBwlCcbL1s4NVK3g");
   const [firstDegree, setFirstDegree] = useState([]);
-  const [secondDegree, setSecondDegree] = useState([]);
+  const [secondDegree, setSecondDegree] = useState({});
 
   return (
     <div>
@@ -66,9 +68,12 @@ export default function Home() {
             </div>
 
             <div className="col-span-3 grid grid-cols-2 gap-x-8">
-              <DegFriends title="1st Degree Friends" />
+              <FirstDegree {...{ firstDegree }} />
               <DegFriends title="2nd Degree Friends" />
+              {/* <SecondDegree {...{ secondDegree }} /> */}
             </div>
+            <button onClick={() => { console.log(firstDegree) }} >Check first deg </button>
+            <button onClick={() => { console.log(secondDegree) }} >Check second deg </button>
 
           </div>
         </div>

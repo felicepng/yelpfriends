@@ -82,8 +82,6 @@ export default function Home() {
               <FirstDegree {...{ firstDegree }} />
               <SecondDegree {...{ secondDegree }} />
             </div>
-            <button onClick={() => { console.log(firstDegree) }} >Check first deg </button>
-            <button onClick={() => { console.log(secondDegree) }} >Check second deg </button>
 
           </div>
         </div>

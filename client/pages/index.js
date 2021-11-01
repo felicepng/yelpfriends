@@ -23,7 +23,7 @@ export default function Home() {
       <Head>
         <title>YelpFriends!</title>
         <meta name="description" content="YelpFriends: find new friends through mutual connections" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/yelp_burst.png" />
       </Head>
 
       <div className="w-screen justify-between flex items-center flex-col">

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import LoadData from '../components/LoadData'
@@ -17,6 +17,10 @@ export default function Home() {
   const [firstDegree, setFirstDegree] = useState([]);
   const [secondDegree, setSecondDegree] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    setIsModalOpen(true);
+  }, [])
 
   return (
     <div>

@@ -2,7 +2,7 @@
 
 Making use of the Yelp user dataset, YelpFriends aims to help users find new friends using mutual connections. The dataset can be found here: https://www.yelp.com/dataset
 
-We make use of trees and graphs to conduct searching, creating Breadth First Search algorithm to compute the 1st and 2nd degree connections of each user. 
+We make use of trees and graphs to conduct searching, creating Breadth First Search algorithm to compute the 1st and 2nd degree connections of each user. For our graphs, we tried the Adjacency Matrix and Adjacency List implementations to build our graph. 
 
 Requirements:
 Ensure yelp_academic_dataset_user.json is in src/main/resources before running the backend.

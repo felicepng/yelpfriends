@@ -10,10 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.example.YelpFriends.model.AdjacencyList;
-import com.example.YelpFriends.model.AdjacencyMatrix;
-import com.example.YelpFriends.model.Tree;
-import com.example.YelpFriends.model.User;
+import com.example.YelpFriends.model.*;
 import com.example.YelpFriends.repository.UserRepository;
 
 import org.json.simple.JSONObject;
@@ -35,6 +32,9 @@ public class UserController {
 
     @Autowired
     private AdjacencyMatrix adjacencyMatrix;
+
+    @Autowired
+    private BooleanAdjacencyMatrix booleanAdjacencyMatrix;
 
     //To be removed if we dont need /load anymore
     @Autowired
@@ -133,7 +133,7 @@ public class UserController {
         return ResponseEntity.ok(sortMap(adjacencyList.getSecondDegree(user_id)));
     }
 
-    //Adjacency List
+    //Tree
     @GetMapping(value = "/buildTree/{user_id}")
     public ResponseEntity<?> buildTree(@PathVariable String user_id){
         tree.buildTree(user_id);
@@ -163,12 +163,36 @@ public class UserController {
         return ResponseEntity.ok(sortMap(secondDegreeFriends));
     }
 
+    //Adj Matrix
+    @GetMapping("/buildBoolAdjMatrix")
+    public ResponseEntity<?> loadBoolAdjMat() {
+        booleanAdjacencyMatrix.buildAdjacencyMatrix();
+        return ResponseEntity.ok(booleanAdjacencyMatrix.fullAdjacency);
+    }
+
+    //q_QQ5kBBwlCcbL1s4NVK3g
+    @GetMapping(value = "/boolAdjMatrix/getFirstDegree/{user_id}")
+    public ResponseEntity<?> loadBoolAdjMatFirstDegree(@PathVariable String user_id) {
+        if (booleanAdjacencyMatrix.fullAdjacency == null ){
+            booleanAdjacencyMatrix.buildAdjacencyMatrix();
+        }
+        return ResponseEntity.ok(booleanAdjacencyMatrix.getFirstDegree(user_id));
+    }
+
+    @GetMapping(value = "/boolAdjMatrix/getSecondDegree/{user_id}")
+    public ResponseEntity<?> loadBoolAdjMatSecondtDegree(@PathVariable String user_id) {
+        if (booleanAdjacencyMatrix.fullAdjacency == null ){
+            booleanAdjacencyMatrix.buildAdjacencyMatrix();
+        }
+        return ResponseEntity.ok(sortMap(booleanAdjacencyMatrix.getSecondDegree(user_id)));
+    }
+
     private List<Map.Entry<String,Integer>> sortMap(Map<String, Integer> secondDegMap) {
         List<Map.Entry<String,Integer>> list = new ArrayList<>(secondDegMap.entrySet());
 
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1,Map.Entry<String, Integer> o2){
-                return (o2.getValue()).compareTo(o1.getValue()); 
+                return (o2.getValue()).compareTo(o1.getValue());
             }
         });
 
@@ -176,10 +200,6 @@ public class UserController {
     }
 
 
-    // public ResponseEntity<HttpStatus> buildMatrix() {
-    //     adjacencyMatrix.buildAdjacencyMatrix();
-    //     return new ResponseEntity<>(HttpStatus.OK);
-    // }
 
 
 

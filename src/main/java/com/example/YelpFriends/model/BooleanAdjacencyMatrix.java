@@ -74,7 +74,6 @@ public class BooleanAdjacencyMatrix {
         }
         long endTime = System.nanoTime();
         System.out.println("Time taken to get first degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
-        System.out.println(firstDegree.size());
         return firstDegree;
     }
 
@@ -113,7 +112,6 @@ public class BooleanAdjacencyMatrix {
         }
         long endTime = System.nanoTime();
         System.out.println("Time taken to get second degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
-        System.out.println(secondDegree.keySet().size());
         return secondDegree;
     }
 

@@ -69,7 +69,7 @@ public class BooleanAdjacencyMatrix {
         Set<String> firstDegree = new HashSet<>();
         for (int i = 0; i < this.size; i++){
             if (fullAdjacency[indexOfUser][i]){
-               firstDegree.add(getKeyByValue(i));
+                firstDegree.add(getKeyByValue(i));
             }
         }
         long endTime = System.nanoTime();

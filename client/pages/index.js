@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {useEffect, useRef, useState} from 'react'
 import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
@@ -8,7 +7,7 @@ import UserIdInput from '../components/UserIdInput'
 import Tree from '../components/Tree'
 import FirstDegree from '../components/FirstDegree'
 import SecondDegree from '../components/SecondDegree'
-import { Modal, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
 import InstructionsModal from '../components/InstructionsModal'
 import BoolAdjacencyMatrix from "../components/BoolAdjacencyMatrix";

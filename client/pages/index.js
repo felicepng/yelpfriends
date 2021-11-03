@@ -79,9 +79,9 @@ export default function Home() {
               </div>
               <div className="grid grid-rows-4 gap-y-4">
                 <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer}} />
+                <BoolAdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
                 <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
                 <Tree {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
-                <BoolAdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
               </div>
 
               <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">

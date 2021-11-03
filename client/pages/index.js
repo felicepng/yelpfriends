@@ -33,7 +33,7 @@ export default function Home() {
 
       <div className="w-screen justify-between flex items-center flex-col">
         <InstructionsModal {...{isModalOpen, setIsModalOpen}} />
-        <div className="w-screen h-48 flex flex-col items-center justify-between py-4 bg-theme">
+        <div className="w-screen h-48 flex flex-col items-center justify-between py-4 bg-primary">
           <div className="mb-4 flex justify-center items-center gap-x-4">
             <div className="flex items-center" >
               <img src="/logo.png" className="h-16" />

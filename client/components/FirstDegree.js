@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import UserCard from './UserCard'
 
 const FirstDegree = (props) => {
@@ -15,7 +15,7 @@ const FirstDegree = (props) => {
                     firstDegree?.map((friend, index) => {
                         // console.log(friend);
                         return (
-                            <UserCard key={index} userId={friend} />
+                            <UserCard key={index} userId={friend} degree={1}/>
                         )
                     }
                     )

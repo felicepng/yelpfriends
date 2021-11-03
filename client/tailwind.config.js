@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#D8DCD4',
-        secondary: '#C5CCBE'
+        primary: '#E5E9F3',
+        secondary: '#b6c1db',
+        tertiary: '#3978D3'
       },
       height: {
         box: '465px'

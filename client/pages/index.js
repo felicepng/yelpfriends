@@ -54,7 +54,7 @@ export default function Home() {
               <img src="/logo.png" className="h-16" />
             </div>
             <Tooltip placement="right" title="Need help?">
-              <BsFillQuestionCircleFill className="h-8 w-8 text-gray-900 hover:text-red-600 cursor-pointer" onClick={() => setIsModalOpen(true)} />
+              <BsFillQuestionCircleFill className="h-7 w-7 text-gray-600 hover:text-tertiary cursor-pointer" onClick={() => setIsModalOpen(true)} />
             </Tooltip>
           </div>
           <div className="-mb-3 flex gap-x-4">

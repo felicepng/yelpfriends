@@ -2,7 +2,7 @@ import { BsFillPersonPlusFill, BsFillPersonCheckFill } from 'react-icons/bs'
 
 const UserCard = (props) => {
   return (
-    <div className="bg-white shadow rounded-2xl h-16 mb-4 px-4 w-full flex justify-between items-center">
+    <div className="bg-white shadow rounded-2xl h-20 mb-4 px-4 w-full flex justify-between items-center">
       <div className="flex items-center">
         <img src={`/users/${Math.floor(Math.random() * 10)}.png`} className="h-11 mr-3" />
         <div>
@@ -10,7 +10,7 @@ const UserCard = (props) => {
           <div className="text-gray-500 text-sm">{props.userId}</div>
           {
             props?.mutualFriends &&
-            <div className="text-gray-500 text-sm">{props.mutualFriends} mutual friends</div>
+            <div className="text-gray-400 text-xs">{props.mutualFriends} mutual friends</div>
           }
         </div>
       </div>

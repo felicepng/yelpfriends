@@ -10,6 +10,7 @@ import FirstDegree from '../components/FirstDegree'
 import SecondDegree from '../components/SecondDegree'
 import { Modal, Tooltip } from 'antd';
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import InstructionsModal from '../components/InstructionsModal'
 
 export default function Home() {
 
@@ -31,18 +32,7 @@ export default function Home() {
       </Head>
 
       <div className="w-screen justify-between flex items-center flex-col">
-        <Modal width={800} visible={isModalOpen}  centered closeable footer={null} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
-          <div className="grid grid-cols-7">
-            <img src="/instructions.webp" className="h-72 my-auto col-span-3" />
-            <div className="m-5 col-span-4">
-              <div className="text-5xl font-bold text-gray-600 mb-3">Instructions</div>
-              <h1 className="text-gray-500">Welcome to YelpFriends! Here are some instructions to take note while using our app:</h1>
-              <h1 className="text-gray-500">1. Do key in your user id and click on the log in button. We have provided a default user id. Should you change the user id, do make sure it a valid one.</h1>
-              <h1 className="text-gray-500">2. You will need to load the data for each of the data structures before proceeding to find your 1st and 2nd degree friends.</h1>
-              <h1 className="text-gray-500">3. Please find your first degree friends before finding your second degree friends</h1>
-            </div>
-          </div>
-        </Modal>
+        <InstructionsModal {...{isModalOpen, setIsModalOpen}} />
         <div className="w-screen h-40 flex flex-col items-center justify-center bg-theme">
           <div className="mb-4 flex justify-center items-center gap-x-4">
             <div className="flex items-center" >

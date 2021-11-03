@@ -6,8 +6,6 @@ const AdjacencyMatrix = (props) => {
   const { userId, setFirstDegree, setSecondDegree } = props;
   const [loaded, setLoaded] = useState(false);
   const [firstDegData, setFirstDegData] = useState(false);
-  const [start, setStart] = useState(0);
-  const [timer, setTimer] = useState(0);
 
   const load = () => {
     setFirstDegree([])
@@ -56,7 +54,6 @@ const AdjacencyMatrix = (props) => {
       </div>
       <div onClick={() => load()} className="grid items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
         <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
-        <p>{timer.toFixed(1)}</p>
       </div>
       {
         loaded

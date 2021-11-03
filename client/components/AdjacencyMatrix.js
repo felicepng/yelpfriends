@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import BackendAPI from '../service/BackendAPI'
+import { BsFillPlayCircleFill } from 'react-icons/bs'
 
 const AdjacencyMatrix = (props) => {
   const { userId, setFirstDegree, setSecondDegree } = props;
@@ -54,28 +55,28 @@ const AdjacencyMatrix = (props) => {
         Using Adjacency Matrix
       </div>
       <div onClick={() => load()} className="grid items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-        <img src="/playButton.png" className="h-7" />
+        <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
         <p>{timer.toFixed(1)}</p>
       </div>
       {
         loaded
           ?
           <div onClick={() => getFirstDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-            <img src="/playButton.png" className="h-7" />
+            <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
           </div>
           :
-          <div className="flex opacity-50 items-center justify-center bg-white shadow cursor-not-allowed rounded-2xl">
-            <img src="/playButton.png" className="h-7" />
+          <div className="flex opacity-40 items-center justify-center bg-white shadow cursor-not-allowed rounded-2xl">
+            <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
           </div>
       }
       {
         firstDegData ?
           <div onClick={() => getSecondDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-            <img src="/playButton.png" className="h-7" />
+            <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
           </div>
           :
-          <div className="flex opacity-50 items-center justify-center bg-white shadow cursor-not-allowed rounded-2xl">
-            <img src="/playButton.png" className="h-7" />
+          <div className="flex opacity-40 items-center justify-center bg-white shadow cursor-not-allowed rounded-2xl">
+            <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
           </div>
       }
 

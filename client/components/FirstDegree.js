@@ -1,6 +1,5 @@
 import React from 'react'
 import UserCard from './UserCard'
-import LazyLoad from 'react-lazy-autoloader';
 
 const FirstDegree = (props) => {
 

@@ -36,7 +36,6 @@ public class UserController {
     @Autowired
     private BooleanAdjacencyMatrix booleanAdjacencyMatrix;
 
-    //To be removed if we dont need /load anymore
     @Autowired
     private UserRepository userRepository;
 
@@ -53,12 +52,16 @@ public class UserController {
             String sCurrentLine;
             br = new BufferedReader(new FileReader("src/main/resources/yelp_academic_dataset_user.json"));
 
-            while ((sCurrentLine = br.readLine()) != null && count < 15000) {
-                // JSONObject jsonobject = (JSONObject) new JSONParser().parse(sCurrentLine);
+            // size of data set to be loaded, starting from the first line
+            int DATASET_SIZE = 15000;
+            while ((sCurrentLine = br.readLine()) != null && count < DATASET_SIZE) {
                 count += 1;
                 System.out.println(count);
                 
+                // Parse a line in dataset to an object
                 JSONObject jsonObject = (JSONObject) parser.parse(sCurrentLine);
+
+                // Get user_id string from jsonObject
                 String user_id = (String) jsonObject.get("user_id");
 
                 // Check if user already exists
@@ -66,18 +69,23 @@ public class UserController {
                     continue;
                 }
 
+                // Get friends string from jsonObject
                 String friendsString = (String) jsonObject.get("friends");
 
+                // Split friends string into array of friends
 				String[] fArr = friendsString.split(", ");
-                // Set<String> friends = new ArrayList<>(Arrays.asList(friendsString.split(", ")));
+
+                // Create new set and add all friends in
 				Set<String> friends = new HashSet<>();
 				for (String a : fArr) {
 					friends.add(a);
 				}
+
+                // Initialise new user
                 User user = new User(user_id, friends);
 
+                // Save user to database
                 userRepository.save(user);
-                // sCurrentLine = br.readLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,7 +93,7 @@ public class UserController {
         return ResponseEntity.ok().build();
 	}
 
-    //Adj Matrix
+    //Build Adjacency Matrix
     @GetMapping("/buildAdjMatrix")
     public ResponseEntity<?> loadAdjMat() {
        adjacencyMatrix.buildAdjacencyMatrix();
@@ -93,6 +101,7 @@ public class UserController {
     }
 
     //q_QQ5kBBwlCcbL1s4NVK3g
+    // Get first degree friends using Adjacency Matrix
     @GetMapping(value = "/adjMatrix/getFirstDegree/{user_id}")
     public ResponseEntity<?> loadAdjMatFirstDegree(@PathVariable String user_id) {
         if (adjacencyMatrix.fullAdjacency == null ){
@@ -101,6 +110,7 @@ public class UserController {
         return ResponseEntity.ok(adjacencyMatrix.getFirstDegree(user_id));
     }
 
+    // Get second degree friends using Adjacency Matrix
     @GetMapping(value = "/adjMatrix/getSecondDegree/{user_id}")
     public ResponseEntity<?> loadAdjMatSecondtDegree(@PathVariable String user_id) {
         if (adjacencyMatrix.fullAdjacency == null ){
@@ -110,13 +120,14 @@ public class UserController {
     }
 
 
-    //Adjacency List
+    //Build Adjacency List
     @GetMapping(value = "/buildAdjList")
     public ResponseEntity<?> loadAdjList(){
         adjacencyList.buildAdjacencyList();
         return ResponseEntity.ok(adjacencyList.fullAdjacencyList);
     }
 
+    // Get first degree friends using Adjacency List
     @GetMapping(value = "/adjList/getFirstDegree/{user_id}")
     public ResponseEntity<?> loadAdjListFirstDegree(@PathVariable String user_id) {
         if (adjacencyList.fullAdjacencyList == null ){
@@ -125,6 +136,7 @@ public class UserController {
         return ResponseEntity.ok(adjacencyList.getFirstDegree(user_id));
     }
 
+    // Get second degree friends using Adjacency List
     @GetMapping(value = "/adjList/getSecondDegree/{user_id}")
     public ResponseEntity<?> loadAdjListSecondDegree(@PathVariable String user_id) {
         if (adjacencyList.fullAdjacencyList == null ){
@@ -133,7 +145,7 @@ public class UserController {
         return ResponseEntity.ok(sortMap(adjacencyList.getSecondDegree(user_id)));
     }
 
-    //Tree
+    //Build Tree
     @GetMapping(value = "/buildTree/{user_id}")
     public ResponseEntity<?> buildTree(@PathVariable String user_id){
         tree.buildTree(user_id);
@@ -143,6 +155,7 @@ public class UserController {
         return ResponseEntity.ok(tree);
     }
 
+    // Get first degree friends using Tree
     @GetMapping(value = "/tree/getFirstDegree/{user_id}")
     public ResponseEntity<?> loadTreeFirstDegree(@PathVariable String user_id) {
         // Check if tree is null or 
@@ -153,6 +166,7 @@ public class UserController {
         return ResponseEntity.ok(firstDegreeFriends);
     }
 
+    // Get second degree friends using Tree
     @GetMapping(value = "/tree/getSecondDegree/{user_id}")
     public ResponseEntity<?> loadTreeSecondDegree(@PathVariable String user_id) {
         if (tree.getRoot() == null || !tree.getRoot().getUserId().equals(user_id) ){
@@ -163,7 +177,7 @@ public class UserController {
         return ResponseEntity.ok(sortMap(secondDegreeFriends));
     }
 
-    //Adj Matrix
+    //Build boolean Adj Matrix
     @GetMapping("/buildBoolAdjMatrix")
     public ResponseEntity<?> loadBoolAdjMat() {
         booleanAdjacencyMatrix.buildAdjacencyMatrix();
@@ -171,6 +185,7 @@ public class UserController {
     }
 
     //q_QQ5kBBwlCcbL1s4NVK3g
+    // Get first degree friends using boolean Adjacency Matrix
     @GetMapping(value = "/boolAdjMatrix/getFirstDegree/{user_id}")
     public ResponseEntity<?> loadBoolAdjMatFirstDegree(@PathVariable String user_id) {
         if (booleanAdjacencyMatrix.fullAdjacency == null ){
@@ -179,6 +194,7 @@ public class UserController {
         return ResponseEntity.ok(booleanAdjacencyMatrix.getFirstDegree(user_id));
     }
 
+    // Get second degree friends using boolean Adjacency Matrix
     @GetMapping(value = "/boolAdjMatrix/getSecondDegree/{user_id}")
     public ResponseEntity<?> loadBoolAdjMatSecondtDegree(@PathVariable String user_id) {
         if (booleanAdjacencyMatrix.fullAdjacency == null ){
@@ -187,15 +203,17 @@ public class UserController {
         return ResponseEntity.ok(sortMap(booleanAdjacencyMatrix.getSecondDegree(user_id)));
     }
 
+    // private sorting function to sort second degree friends map to list entries
     private List<Map.Entry<String,Integer>> sortMap(Map<String, Integer> secondDegMap) {
+        // Generate list of entries in second degree friends map
         List<Map.Entry<String,Integer>> list = new ArrayList<>(secondDegMap.entrySet());
 
+        // Sort the list based on descending value of mutual friends
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1,Map.Entry<String, Integer> o2){
                 return (o2.getValue()).compareTo(o1.getValue());
             }
         });
-
         return list;
     }
 

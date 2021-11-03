@@ -117,8 +117,7 @@ public class AdjacencyList {
                 // Check if:
                 // 1) secondDegFriend is already a first Degree friend
                 // 2) secondDegFriend is the selected user
-                // 3) secondDegFriend exists in the database
-                if (!firstDegree.contains(secondDegFriend) && !userId.equals(secondDegFriend) && userRepository.existsByUserId(secondDegFriend)) {
+                if (!firstDegree.contains(secondDegFriend) && !userId.equals(secondDegFriend)) {
                     // if secondDegFriend exists in map, increase mutual friend count by 1
                     if (secondDegreeConnections.containsKey(secondDegFriend)){
                         Integer numberOfMutualFriends = secondDegreeConnections.get(secondDegFriend);

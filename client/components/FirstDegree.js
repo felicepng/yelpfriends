@@ -6,14 +6,14 @@ const FirstDegree = (props) => {
     const { firstDegree } = props;
 
     return (
-        <div className="p-6 bg-gray-50 rounded-3xl col-span-1">
-            <div className="flex items-center text-gray-500 font-semibold">
+        <div className="py-6 bg-gray-50 rounded-3xl col-span-1">
+            <div className="px-6 flex justify-between items-center text-gray-500 font-semibold">
                 1st Degree Friends
+                <div className="text-gray-400">({firstDegree.length})</div>
             </div>
-            <div className="mt-6 mb-2 h-96 overflow-y-scroll scrollbar-hide">
+            <div className="mt-6 mb-2 h-96 px-6 overflow-y-scroll">
                 {
                     firstDegree?.map((friend, index) => {
-                        // console.log(friend);
                         return (
                             <UserCard key={index} userId={friend} degree={1}/>
                         )

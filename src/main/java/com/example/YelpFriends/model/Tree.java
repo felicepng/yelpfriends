@@ -137,8 +137,11 @@ public class Tree {
         while (!queue.isEmpty()) {
             tempNode = queue.poll();
             // add if depth is 1
-            if(depth(tempNode) == 1) { 
-                firstDegFriends.add(tempNode.getUserId());
+            if(depth(tempNode) == 1) {
+                String firstDegreeUserID = tempNode.getUserId();
+                if(userRepository.existsByUserId(firstDegreeUserID)){
+                    firstDegFriends.add(firstDegreeUserID);
+                }
             }
 
             List<TreeNode> children = tempNode.getChildren();

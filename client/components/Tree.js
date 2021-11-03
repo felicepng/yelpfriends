@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BackendAPI from '../service/BackendAPI';
 
 const Tree = (props) => {
-
   const { userId, setFirstDegree, setSecondDegree } = props;
+  const [loaded, setLoaded] = useState(false);
+  const [firstDegData, setFirstDegData] = useState(false);
 
   const load = (userId) => {
     setFirstDegree([])
@@ -13,18 +14,21 @@ const Tree = (props) => {
     response.then((res) => {
       props.endTimer()
       console.log(res)
+      setLoaded(true)
     }).catch((error) => {
       console.log(error)
     })
   }
 
   const getFirstDegree = (userId) => {
+    setSecondDegree([])
     const response = BackendAPI.getTreeFirstDegree(userId);
     props.startTimer()
     response.then((res) => {
       props.endTimer()
       console.log(res)
       setFirstDegree(res.data);
+      setFirstDegData(true)
     }).catch((error) => {
       console.log(error)
     })
@@ -50,12 +54,28 @@ const Tree = (props) => {
       <div onClick={() => load(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
         <img src="/playButton.png" className="h-7" />
       </div>
-      <div onClick={() => getFirstDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-        <img src="/playButton.png" className="h-7" />
-      </div>
-      <div onClick={() => getSecondDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
-        <img src="/playButton.png" className="h-7" />
-      </div>
+      {
+        loaded
+          ?
+          <div onClick={() => getFirstDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
+            <img src="/playButton.png" className="h-7" />
+          </div>
+          :
+          <div className="flex opacity-50 items-center justify-center bg-white shadow cursor-not-allowed rounded-2xl">
+            <img src="/playButton.png" className="h-7" />
+          </div>
+      }
+      {
+        firstDegData
+          ?
+          <div onClick={() => getSecondDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
+            <img src="/playButton.png" className="h-7" />
+          </div>
+          :
+          <div className="flex opacity-50 items-center justify-center bg-white shadow cursor-not-allowed rounded-2xl">
+            <img src="/playButton.png" className="h-7" />
+          </div>
+      }
     </div>
   )
 }

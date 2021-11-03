@@ -54,7 +54,7 @@ export default function Home() {
               <img src="/logo.png" className="h-16" />
             </div>
             <Tooltip placement="right" title="Need help?">
-              <BsFillQuestionCircleFill className="h-8 w-8 text-gray-900 hover:text-red-600 cursor-pointer" onClick={() => setIsModalOpen(true)} />
+              <BsFillQuestionCircleFill className="h-7 w-7 text-gray-600 hover:text-tertiary cursor-pointer" onClick={() => setIsModalOpen(true)} />
             </Tooltip>
           </div>
           <div className="-mb-3 flex gap-x-4">
@@ -77,11 +77,11 @@ export default function Home() {
                   Get 2nd degree friends
                 </div>
               </div>
-              <div className="grid grid-rows-3 gap-y-4">
+              <div className="grid grid-rows-4 gap-y-4">
                 <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer}} />
+                <BoolAdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
                 <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
                 <Tree {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
-                <BoolAdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
               </div>
 
               <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">

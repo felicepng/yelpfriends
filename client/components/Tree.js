@@ -50,7 +50,7 @@ const Tree = (props) => {
   return (
     <div className="grid grid-cols-4 gap-x-4">
       <div className="flex items-center text-sm text-gray-500 font-semibold">
-        Using Tree
+        Tree
       </div>
       <div onClick={() => load(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
         <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />

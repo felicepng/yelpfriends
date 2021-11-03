@@ -47,8 +47,8 @@ export default function Home() {
 
       <div className="w-screen justify-between flex items-center flex-col">
         <InstructionsModal {...{isModalOpen, setIsModalOpen}} />
-        <div className="w-screen h-40 flex flex-col items-center justify-center bg-theme">
-          <div className="mb-4 flex justify-center items-center gap-x-4">
+        <div className="w-screen flex flex-col items-center justify-between py-4 bg-primary">
+          <div className="mt-1 mb-5 flex justify-center items-center gap-x-4">
             <div className="flex items-center" >
               <img src="/logo.png" className="h-16" />
             </div>
@@ -56,8 +56,7 @@ export default function Home() {
               <BsFillQuestionCircleFill className="h-8 w-8 text-gray-900 hover:text-red-600 cursor-pointer" onClick={() => setIsModalOpen(true)} />
             </Tooltip>
           </div>
-          <div className="flex gap-x-4">
-            <LoadData />
+          <div className="-mb-3 flex gap-x-4">
             <UserIdInput {...{ userId, setUserId }} />
           </div>
         </div>

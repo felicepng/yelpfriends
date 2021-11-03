@@ -12,7 +12,7 @@ const SecondDegree = (props) => {
                 2nd Degree Friends
                 <div className="text-gray-400">({secondDegree.length})</div>
             </div>
-            <div className="mt-6 mb-2 h-96 px-6 overflow-y-scroll">
+            <div className="mt-6 mb-2 h-box px-6 overflow-y-scroll">
                 {
                     secondDegree?.map((value,index) => {
                         const keys = Object.keys(value);

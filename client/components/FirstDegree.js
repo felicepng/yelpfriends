@@ -11,7 +11,7 @@ const FirstDegree = (props) => {
                 1st Degree Friends
                 <div className="text-gray-400">({firstDegree.length})</div>
             </div>
-            <div className="mt-6 mb-2 h-96 px-6 overflow-y-scroll">
+            <div className="mt-6 mb-2 h-box px-6 overflow-y-scroll">
                 {
                     firstDegree?.map((friend, index) => {
                         return (

@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         primary: '#D8DCD4',
         secondary: '#C5CCBE'
+      },
+      height: {
+        box: '465px'
       }
     }
   },

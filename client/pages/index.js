@@ -77,7 +77,7 @@ export default function Home() {
                   Get 2nd degree friends
                 </div>
               </div>
-              <div className="grid grid-rows-3 gap-y-4">
+              <div className="grid grid-rows-4 gap-y-4">
                 <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer}} />
                 <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
                 <Tree {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />

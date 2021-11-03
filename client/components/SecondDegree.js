@@ -23,7 +23,7 @@ const SecondDegree = (props) => {
                 }
                 {
                     secondDegree.length == 0 && 
-                    <div className="flex text-gray-500 font-semibold items-center h-full text-center">
+                    <div className="flex flex-col justify-center self-center text-gray-500 font-semibold h-full text-center">
                         Get 2nd degree connections using any of the implementations!
                     </div>
                 }

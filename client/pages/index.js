@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import AdjacencyList from '../components/AdjacencyList'
 import AdjacencyMatrix from '../components/AdjacencyMatrix'
 import LoadData from '../components/LoadData'
@@ -18,10 +18,24 @@ export default function Home() {
   const [firstDegree, setFirstDegree] = useState([]);
   const [secondDegree, setSecondDegree] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [timer,setTimer] = useState(0);
+  const increment = useRef(null)
 
   useEffect(() => {
     setIsModalOpen(true);
   }, [])
+
+  const startTimer = () =>{
+    clearInterval(increment.current)
+    setTimer(0)
+    increment.current = setInterval(() => {
+      setTimer((timer) => timer + 1)
+    }, 10)
+  }
+
+  const endTimer = () =>{
+    clearInterval(increment.current)
+  }
 
   return (
     <div>
@@ -64,9 +78,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="grid grid-rows-3 gap-y-4">
-                <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree }} />
-                <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree }} />
-                <Tree {...{ userId, setFirstDegree, setSecondDegree }} />
+                <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer}} />
+                <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
+                <Tree {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
               </div>
 
               <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">
@@ -84,6 +98,11 @@ export default function Home() {
               <SecondDegree {...{ secondDegree }} />
             </div>
           </div>
+        </div>
+        <div className="flex-col flex items-center">
+          {`${(timer/100).toFixed(2)}`}
+          <button onClick={() =>startTimer()}>Start Timer</button>
+          <button onClick={()=>endTimer()}>End Timer</button>
         </div>
       </div>
     </div>

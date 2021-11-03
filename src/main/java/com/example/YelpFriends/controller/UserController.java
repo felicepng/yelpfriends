@@ -97,7 +97,7 @@ public class UserController {
     @GetMapping("/buildAdjMatrix")
     public ResponseEntity<?> loadAdjMat() {
        adjacencyMatrix.buildAdjacencyMatrix();
-       return ResponseEntity.ok(adjacencyMatrix.fullAdjacency);
+       return ResponseEntity.ok().build();
     }
 
     //q_QQ5kBBwlCcbL1s4NVK3g
@@ -124,7 +124,7 @@ public class UserController {
     @GetMapping(value = "/buildAdjList")
     public ResponseEntity<?> loadAdjList(){
         adjacencyList.buildAdjacencyList();
-        return ResponseEntity.ok(adjacencyList.fullAdjacencyList);
+        return ResponseEntity.ok().build();
     }
 
     // Get first degree friends using Adjacency List
@@ -152,7 +152,7 @@ public class UserController {
         if (tree.getRoot() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(tree);
+        return ResponseEntity.ok().build();
     }
 
     // Get first degree friends using Tree

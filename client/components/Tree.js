@@ -7,7 +7,9 @@ const Tree = (props) => {
 
     const load = (userId) => {
         const response = BackendAPI.buildTree(userId);
+        props.startTimer();
         response.then((res) => {
+            props.endTimer()
             console.log(res)
         }).catch((error) => {
             console.log(error)
@@ -17,7 +19,9 @@ const Tree = (props) => {
     const getFirstDegree = (userId) => {
         setFirstDegree([])
         const response = BackendAPI.getTreeFirstDegree(userId);
+        props.startTimer()
         response.then((res) => {
+            props.endTimer()
             console.log(res)
             setFirstDegree(res.data);
         }).catch((error) => {
@@ -28,7 +32,9 @@ const Tree = (props) => {
     const getSecondDegree = (userId) => {
         setSecondDegree([])
         const response = BackendAPI.getTreeSecondDegree(userId);
+        props.startTimer()
         response.then((res) => {
+            props.endTimer()
             console.log(res)
             setSecondDegree(res.data)
         }).catch((error) => {

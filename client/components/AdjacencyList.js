@@ -6,7 +6,9 @@ const AdjacencyList = (props) => {
 
     const load = () => {
         const response = BackendAPI.buildAdjList();
+        props.startTimer();
         response.then((res) => {
+            props.endTimer()
             console.log(res)
         }).catch((error) => {
             console.log(error)
@@ -16,7 +18,9 @@ const AdjacencyList = (props) => {
     const getFirstDegree = (userId) => {
         setFirstDegree([])
         const response = BackendAPI.getAdjListFirstDegree(userId);
+        props.startTimer();
         response.then((res) => {
+            props.endTimer()
             console.log(res)
             setFirstDegree(res.data)
         }).catch((error) => {
@@ -27,7 +31,9 @@ const AdjacencyList = (props) => {
     const getSecondDegree = (userId) => {
         setSecondDegree([])
         const response = BackendAPI.getAdjListSecondDegree(userId);
+        props.startTimer();
         response.then((res) => {
+            props.endTimer()
             console.log(res)
             setSecondDegree(res.data)
         }).catch((error) => {

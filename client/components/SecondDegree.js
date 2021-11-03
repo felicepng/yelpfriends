@@ -16,7 +16,6 @@ const SecondDegree = (props) => {
                 {
                     secondDegree?.map((value,index) => {
                         const keys = Object.keys(value);
-                        console.log(keys[0])
                         return (
                             <UserCard key={index} userId={keys[0]} mutualFriends={value[keys[0]]} degree={2}/>
                         )

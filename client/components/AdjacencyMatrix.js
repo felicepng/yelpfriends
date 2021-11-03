@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BackendAPI from '../service/BackendAPI'
 
 const AdjacencyMatrix = (props) => {
     const { userId, setFirstDegree, setSecondDegree } = props;
+    const [start, setStart] = useState(0);
+    const [timer, setTimer] = useState(0);
 
     const load = () => {
+        console.log('Time now is', window.performance.now());
+        setStart(window.performance.now());
         const response = BackendAPI.buildAdjMatrix();
         response.then((res) => {
             console.log(res)
+            console.log('Time now is', window.performance.now());
         }).catch((error) => {
             console.log(error)
         })
@@ -40,8 +45,9 @@ const AdjacencyMatrix = (props) => {
             <div className="flex items-center pr-12 text-sm text-gray-500 font-semibold">
                 Using Adjacency Matrix
             </div>
-            <div onClick={() => load()} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
+            <div onClick={() => load()} className="grid items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
                 <img src="/playButton.png" className="h-7" />
+                <p>{timer.toFixed(1)}</p>
             </div>
             <div onClick={() => getFirstDegree(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl">
                 <img src="/playButton.png" className="h-7" />

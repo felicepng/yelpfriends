@@ -11,6 +11,7 @@ import SecondDegree from '../components/SecondDegree'
 import { Modal, Tooltip } from 'antd';
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
 import InstructionsModal from '../components/InstructionsModal'
+import BoolAdjacencyMatrix from "../components/BoolAdjacencyMatrix";
 
 export default function Home() {
 
@@ -30,7 +31,7 @@ export default function Home() {
     setTimer(0)
     increment.current = setInterval(() => {
       setTimer((timer) => timer + 1)
-    }, 10)
+    }, 100)
   }
 
   const endTimer = () =>{
@@ -80,6 +81,7 @@ export default function Home() {
                 <AdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer}} />
                 <AdjacencyList {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
                 <Tree {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
+                <BoolAdjacencyMatrix {...{ userId, setFirstDegree, setSecondDegree,startTimer,endTimer }} />
               </div>
 
               <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">
@@ -99,7 +101,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-col flex items-center">
-          {`${(timer/100).toFixed(2)}`}
+          {`${(timer/10).toFixed(1)}`}
           <button onClick={() =>startTimer()}>Start Timer</button>
           <button onClick={()=>endTimer()}>End Timer</button>
         </div>

@@ -70,6 +70,21 @@ class BackendAPI {
         return axios.get(`${BACKEND_API_URL}/tree/getSecondDegree/${user_id}`);
     }
 
+    //BOOLEAN ADJACENCY MATRIX
+    buildBoolAdjMat = () => {
+        return axios.get(`${BACKEND_API_URL}/buildBoolAdjMatrix/`);
+    }
+
+    // Get the set of first degree connections with specified user with user_id
+    getBoolAdjFirstDegree = (user_id) => {
+        return axios.get(`${BACKEND_API_URL}/boolAdjMatrix/getFirstDegree/${user_id}`);
+    }
+
+    // Get the set of second degree connections with specified user with user_id
+    getBoolAdjSecondDegree = (user_id) => {
+        return axios.get(`${BACKEND_API_URL}/boolAdjMatrix/getSecondDegree/${user_id}`);
+    }
+
 }
 
 export default new BackendAPI();

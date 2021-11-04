@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import AdjacencyList from "../components/AdjacencyList";
 import AdjacencyMatrix from "../components/AdjacencyMatrix";
-import LoadData from "../components/LoadData";
 import UserIdInput from "../components/UserIdInput";
 import Tree from "../components/Tree";
 import FirstDegree from "../components/FirstDegree";
@@ -171,8 +170,8 @@ export default function Home() {
 
                 <div className="p-8 w-screen">
                     <div className="grid grid-cols-5 gap-x-8">
-                        <div className="p-6 bg-gray-50 rounded-3xl col-span-2 gap-y-4">
-                            <div className="grid grid-cols-4 gap-x-4 mb-3">
+                        <div className="p-7 bg-gray-50 rounded-3xl col-span-2 gap-y-4">
+                            <div className="grid grid-cols-4 gap-x-6 mb-7">
                                 <div />
                                 <div className="text-sm text-gray-400 font-semibold text-center">
                                     Populate data
@@ -184,7 +183,7 @@ export default function Home() {
                                     Get 2nd degree friends
                                 </div>
                             </div>
-                            <div className="grid grid-rows-4 gap-y-4">
+                            <div className="grid grid-rows-4 gap-y-6">
                                 <AdjacencyMatrix
                                     {...{
                                         userId,
@@ -235,15 +234,6 @@ export default function Home() {
                                     secondDegTime = {`${(secondTreeTimer / 100).toFixed(2)}`}
                                 />
                             </div>
-
-                            <div className="border-t-2 pt-5 mt-6 grid grid-cols-4 gap-x-4">
-                                <div className="flex items-center text-sm text-gray-500 font-semibold">
-                                    Fastest
-                                </div>
-                                <div className="h-14 flex items-center justify-center bg-white shadow rounded-2xl" />
-                                <div className="flex items-center justify-center bg-white shadow rounded-2xl" />
-                                <div className="flex items-center justify-center bg-white shadow rounded-2xl" />
-                            </div>
                         </div>
 
                         <div className="col-span-3 grid grid-cols-2 gap-x-8">
@@ -252,25 +242,6 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                {/* <div className="flex-col flex justify-center">
-                    <div className = "flex flex-col items-center">
-                        {`${(loadAdjListTimer / 10).toFixed(1)}`}
-                        {`${(loadAdjMatTimer / 10).toFixed(1)}`}
-                        {`${(loadTreeTimer / 10).toFixed(1)}`}
-                        {`${(loadBoolAdjTimer / 10).toFixed(1)}`}
-                        {`${(firstAdjListTimer / 10).toFixed(1)}`}
-                        {`${(firstAdjMatTimer / 10).toFixed(1)}`}
-                        {`${(firstTreeTimer / 10).toFixed(1)}`}
-                        {`${(firstBoolAdjTimer / 10).toFixed(1)}`}
-                        {`${(secondAdjListTimer / 10).toFixed(1)}`}
-                        {`${(secondAdjMatTimer / 10).toFixed(1)}`}
-                        {`${(secondTreeTimer / 10).toFixed(1)}`}
-                        {`${(secondBoolAdjTimer / 10).toFixed(1)}`}
-                    </div>
-
-                    <button onClick={() => startTimer()}>Start Timer</button>
-                    <button onClick={() => endTimer()}>End Timer</button>
-                </div> */}
             </div>
         </div>
     );

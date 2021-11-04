@@ -52,7 +52,7 @@ const Tree = (props) => {
             <div className="flex items-center text-sm text-gray-500 font-semibold">
                 Tree
             </div>
-            <div onClick={() => load()} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl flex-col">
+            <div onClick={() => load(userId)} className="flex items-center justify-center bg-white shadow hover:bg-gray-200 cursor-pointer rounded-2xl flex-col">
                 <BsFillPlayCircleFill className="h-7 w-7 text-secondary" />
                 <span>{props.loadTime}</span>
             </div>

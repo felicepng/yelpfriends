@@ -53,7 +53,7 @@ export default function Home() {
                     setFirstAdjMatTimer(
                         (firstAdjMatTimer) => firstAdjMatTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
 
             case 3:
@@ -62,7 +62,7 @@ export default function Home() {
                     setSecondAdjMatTimer(
                         (secondAdjMatTimer) => secondAdjMatTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
             case 4:
                 setLoadBoolAdjMatTimer(0);
@@ -78,7 +78,7 @@ export default function Home() {
                     setFirstBoolAdjMatTimer(
                         (firstBoolAdjTimer) => firstBoolAdjTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
             case 6:
                 setSecondBoolAdjMatTimer(0);
@@ -86,7 +86,7 @@ export default function Home() {
                     setSecondBoolAdjMatTimer(
                         (secondBoolAdjTimer) => secondBoolAdjTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
             case 7:
                 setLoadAdjListTimer(0);
@@ -102,7 +102,7 @@ export default function Home() {
                     setFirstAdjListTimer(
                         (firstAdjListTimer) => firstAdjListTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
             case 9:
                 setSecondAdjListTimer(0);
@@ -110,7 +110,7 @@ export default function Home() {
                     setSecondAdjListTimer(
                         (secondAdjListTimer) => secondAdjListTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
             case 10:
                 setLoadTreeTimer(0);
@@ -122,7 +122,7 @@ export default function Home() {
                 setFirstTreeTimer(0);
                 increment.current = setInterval(() => {
                     setFirstTreeTimer((firstTreeTimer) => firstTreeTimer + 1);
-                }, 100);
+                }, 10);
                 break;
             case 12:
                 setSecondTreeTimer(0);
@@ -130,7 +130,7 @@ export default function Home() {
                     setSecondTreeTimer(
                         (secondTreeTimer) => secondTreeTimer + 1
                     );
-                }, 100);
+                }, 10);
                 break;
         }
     };
@@ -193,6 +193,10 @@ export default function Home() {
                                         startTimer,
                                         endTimer,
                                     }}
+                                    loadTime = {`${(loadAdjMatTimer / 10).toFixed(1)}`}
+                                    firstDegTime = {`${(firstAdjMatTimer / 100).toFixed(2)}`}
+                                    secondDegTime = {`${(secondAdjMatTimer / 100).toFixed(2)}`}
+                                    
                                 />
                                 <BoolAdjacencyMatrix
                                     {...{
@@ -202,6 +206,9 @@ export default function Home() {
                                         startTimer,
                                         endTimer,
                                     }}
+                                    loadTime = {`${(loadBoolAdjTimer/ 10).toFixed(1)}`}
+                                    firstDegTime = {`${(firstBoolAdjTimer / 100).toFixed(2)}`}
+                                    secondDegTime = {`${(secondBoolAdjTimer / 100).toFixed(2)}`}
                                 />
                                 <AdjacencyList
                                     {...{
@@ -211,6 +218,9 @@ export default function Home() {
                                         startTimer,
                                         endTimer,
                                     }}
+                                    loadTime = {`${(loadAdjListTimer / 10).toFixed(1)}`}
+                                    firstDegTime = {`${(firstAdjListTimer / 100).toFixed(2)}`}
+                                    secondDegTime = {`${(secondAdjListTimer / 100).toFixed(2)}`}
                                 />
                                 <Tree
                                     {...{
@@ -220,6 +230,9 @@ export default function Home() {
                                         startTimer,
                                         endTimer,
                                     }}
+                                    loadTime = {`${(loadTreeTimer/ 10).toFixed(1)}`}
+                                    firstDegTime = {`${(firstTreeTimer / 100).toFixed(2)}`}
+                                    secondDegTime = {`${(secondTreeTimer / 100).toFixed(2)}`}
                                 />
                             </div>
 

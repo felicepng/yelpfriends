@@ -252,7 +252,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="flex-col flex justify-center">
+                {/* <div className="flex-col flex justify-center">
                     <div className = "flex flex-col items-center">
                         {`${(loadAdjListTimer / 10).toFixed(1)}`}
                         {`${(loadAdjMatTimer / 10).toFixed(1)}`}
@@ -270,7 +270,7 @@ export default function Home() {
 
                     <button onClick={() => startTimer()}>Start Timer</button>
                     <button onClick={() => endTimer()}>End Timer</button>
-                </div>
+                </div> */}
             </div>
         </div>
     );

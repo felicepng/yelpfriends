@@ -11,7 +11,7 @@ const AdjacencyMatrix = (props) => {
         setFirstDegree([])
         setSecondDegree([])
         const response = BackendAPI.buildAdjMatrix();
-        props.startTimer();
+        props.startTimer(1);
         response.then((res) => {
             props.endTimer();
             console.log(res)
@@ -24,7 +24,7 @@ const AdjacencyMatrix = (props) => {
     const getFirstDegree = (userId) => {
         setSecondDegree([])
         const response = BackendAPI.getAdjMatrixFirstDegree(userId);
-        props.startTimer();
+        props.startTimer(2);
         response.then((res) => {
             props.endTimer()
             console.log(res)
@@ -37,7 +37,7 @@ const AdjacencyMatrix = (props) => {
 
     const getSecondDegree = (userId) => {
         const response = BackendAPI.getAdjMatrixSecondDegree(userId);
-        props.startTimer()
+        props.startTimer(3)
         response.then((res) => {
             props.endTimer()
             console.log(res.data["0AF4FMEq9kzzHbEjEk9Geg"])

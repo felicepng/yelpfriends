@@ -11,7 +11,7 @@ const BoolAdjacencyMatrix = (props) => {
         setFirstDegree([])
         setSecondDegree([])
         const response = BackendAPI.buildBoolAdjMat();
-        props.startTimer();
+        props.startTimer(4);
         response.then((res) => {
             props.endTimer()
             console.log(res)
@@ -24,7 +24,7 @@ const BoolAdjacencyMatrix = (props) => {
     const getFirstDegree = (userId) => {
         setSecondDegree([])
         const response = BackendAPI.getBoolAdjFirstDegree(userId);
-        props.startTimer();
+        props.startTimer(5);
         response.then((res) => {
             props.endTimer()
             console.log(res)
@@ -37,7 +37,7 @@ const BoolAdjacencyMatrix = (props) => {
 
     const getSecondDegree = (userId) => {
         const response = BackendAPI.getBoolAdjSecondDegree(userId);
-        props.startTimer();
+        props.startTimer(6);
         response.then((res) => {
             props.endTimer()
             console.log(res)

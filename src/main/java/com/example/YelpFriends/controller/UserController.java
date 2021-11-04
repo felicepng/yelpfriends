@@ -181,7 +181,7 @@ public class UserController {
     @GetMapping("/buildBoolAdjMatrix")
     public ResponseEntity<?> loadBoolAdjMat() {
         booleanAdjacencyMatrix.buildAdjacencyMatrix();
-        return ResponseEntity.ok(booleanAdjacencyMatrix.fullAdjacency);
+        return ResponseEntity.ok().build();
     }
 
     //q_QQ5kBBwlCcbL1s4NVK3g

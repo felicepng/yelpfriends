@@ -83,7 +83,8 @@ public class AdjacencyList {
     public Map<String, Integer> getSecondDegree(String userId) {
         long startTime = System.nanoTime();
 
-        // Make new map to store all second degree connections
+        // Make new map to store all second degree connections, mapping user_id to number of mutual
+        // connections
         HashMap<String,Integer> secondDegreeConnections = new HashMap<>();
 
         // Get list of user's friends from map
@@ -123,6 +124,7 @@ public class AdjacencyList {
         return secondDegreeConnections;
     }
 
+    //Not used in this project
     public List<String> getThirdDegree(String userId) {
         long startTime = System.nanoTime();
         List<String> list = new ArrayList<>();

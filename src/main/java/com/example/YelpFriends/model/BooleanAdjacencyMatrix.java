@@ -36,8 +36,9 @@ public class BooleanAdjacencyMatrix {
         for (User user : users){
             int indexOfUser = userIndex.get(user.getUserId());
             Set<String> friendsList = user.getFriends();
+
+            //For each first degree friends, set the respective index of the matrix to true
             for(String friend: friendsList){
-                // String friendUserId = friend.getUserId();
                 Integer indexOfFriend = userIndex.get(friend);
                 if (indexOfFriend != null){
                     fullAdjacency[indexOfUser][indexOfFriend] = true;
@@ -66,9 +67,14 @@ public class BooleanAdjacencyMatrix {
 
         long startTime = System.nanoTime();
         int indexOfUser = userIndex.get(userId);
+
+        //Using hashset to prevent duplicates
         Set<String> firstDegree = new HashSet<>();
+
+        
         for (int i = 0; i < this.size; i++){
             if (fullAdjacency[indexOfUser][i]){
+                //Do a reverse lookup using index to get user_id
                 firstDegree.add(getKeyByValue(i));
             }
         }
@@ -78,19 +84,23 @@ public class BooleanAdjacencyMatrix {
     }
 
     public HashMap<String, Integer> getSecondDegree(String userId) {
-        // Get column for userId
         long startTime = System.nanoTime();
+
+        //Get index of user from their userID
         int indexOfUser = userIndex.get(userId);
         Set<Integer> firstDegree = new HashSet<>();
+        
+        //Mapping user_id to number of mutual friends
         HashMap<String,Integer> secondDegree = new HashMap<>();
+
+        //Populate firstDegree set
         for (int i = 0; i < this.size; i++) {
-            // if (fullAdjacency.get(indexOfUser).get(i).equals("1")) {
-            //     firstDegree.add(i);
-            // }
             if (fullAdjacency[indexOfUser][i]){
                 firstDegree.add(i);
             }
         }
+
+        //For each user in first degree, get all connections
         for (Integer friendIndex : firstDegree) {
             for (int index = 0; index < this.size; index++) {
                 // 3 conditions for adding to second degree:
@@ -99,6 +109,8 @@ public class BooleanAdjacencyMatrix {
                 //      3.Person is not User itself
 
                 if (fullAdjacency[friendIndex][index] && !firstDegree.contains(index) && index != indexOfUser){
+                    
+                    //Reverse lookup with index to get user_id
                     String secondDegreeUserID = getKeyByValue(index);
                     if (secondDegree.containsKey(secondDegreeUserID)){
                         int mutualFriends = secondDegree.get(secondDegreeUserID);

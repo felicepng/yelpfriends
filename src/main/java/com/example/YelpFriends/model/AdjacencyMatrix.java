@@ -135,47 +135,4 @@ public class AdjacencyMatrix {
         System.out.println("Time taken to get second degree from Adjacency Matrix is " + (endTime - startTime) + "ns");
         return secondDegree;
     }
-
-//    public static void main(String[] args) {
-//
-//        List<User> users = new ArrayList<>();
-//
-//
-//        // adjList.put("Tom", new HashSet<>());
-//        // adjList.put("John", new HashSet<>(Arrays.asList("Jack", "Mary")));
-//        // adjList.put("Jack", new HashSet<>(Arrays.asList("John")));
-//        // adjList.put("Mary", new HashSet<>(Arrays.asList("John")));
-//        Set<String> nicsFriends = new HashSet<String>();
-//        nicsFriends.add("yvonne");
-//        nicsFriends.add("felice");
-//        nicsFriends.add("jer");
-//        nicsFriends.add("daryl");
-//        User nic = new User("nic", nicsFriends);
-//        users.add(nic);
-//        Set<String> everyonesFriend = new HashSet<String>();
-//        everyonesFriend.add("nic");
-//        Set<String> darylsFriends = new HashSet<String>();
-//        User daryl = new User("daryl", everyonesFriend);
-//        users.add(daryl);
-//        User yvonne = new User("yvonne", everyonesFriend);
-//        users.add(yvonne);
-//        User felice = new User("felice", everyonesFriend);
-//        users.add(felice);
-//        User jer = new User("jer", everyonesFriend);
-//        users.add(jer);
-//
-//        AdjacencyMatrix adjMat = new AdjacencyMatrix();
-//        adjMat.users = users;
-//        adjMat.buildAdjacencyMatrix();
-//        for (int i = 0; i < adjMat.size;i++){
-//            for (int j = 0; j < adjMat.size; j++){
-//                System.out.println(adjMat.fullAdjacency[i][j]);
-//            }
-//        }
-//        // adjList.put("Daryl", new ArrayList<>());
-//        // adjList.put("nic >:(", new ArrayList<>());
-//        // adjList.put("Yvonne", new ArrayList<String>(Arrays.asList("Jack", "Mary")));
-//        // adjList.put("Felice :)", new ArrayList<String>(Arrays.asList("John")));
-//        // adjList.put("Jerald", new ArrayList<String>(Arrays.asList("John")));
-//    }
 }

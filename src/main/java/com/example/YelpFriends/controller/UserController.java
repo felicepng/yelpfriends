@@ -56,7 +56,7 @@ public class UserController {
             int DATASET_SIZE = 15000;
             while ((sCurrentLine = br.readLine()) != null && count < DATASET_SIZE) {
                 count += 1;
-                System.out.println(count);
+                // System.out.println(count);
                 
                 // Parse a line in dataset to an object
                 JSONObject jsonObject = (JSONObject) parser.parse(sCurrentLine);

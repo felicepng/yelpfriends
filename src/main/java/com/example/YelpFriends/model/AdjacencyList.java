@@ -45,19 +45,6 @@ public class AdjacencyList {
         System.out.println("Time taken to build an Adjacency List is " + (endTime - startTime) + "ns");
     }
 
-    // for debugging purposes
-    public void printAdjacencyList() {
-        System.out.println("Adjacency List:");
-        for (Map.Entry<String, ArrayList<String>> entry : fullAdjacencyList.entrySet()) {
-            System.out.print(entry.getKey() + " -> ");
-
-            for (String friend : entry.getValue()) {
-                System.out.print(friend + " ");
-            }
-            System.out.println();
-        }
-    }
-
     public void addUser(String userId) {
         fullAdjacencyList.put(userId, new ArrayList<>());
     }

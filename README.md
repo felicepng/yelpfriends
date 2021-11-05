@@ -32,7 +32,7 @@ To run the frontend:
 ```bash
 npm run dev
 ```
-Navigate to https://localhost:3000 to interact with our application.
+Navigate to http://localhost:3000 to interact with our application.
 Follow the instructions provided on the website! 
 
 ---

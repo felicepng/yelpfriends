@@ -27,7 +27,7 @@ Alternatively, load the frontend using the instructions below.
 FRONTEND:
 Our frontend was built using Next.js as our primary framework and Tailwind CSS.
 Open another terminal and cd into the client/ folder. Ensure the backend is running before attempting to start the frontend. 
-Run `npm install` to install node modules and required dependencies:
+Run `npm install` to install node modules and required dependencies.
 To run the frontend:
 ```bash
 npm run dev

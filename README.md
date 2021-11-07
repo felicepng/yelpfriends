@@ -11,6 +11,8 @@ We explored different data structures that Yelp can use to help bring this featu
 
 We compared the efficiecy of each of these algorithms through an empirical analysis. You will be able to see these data being calculated in real-time from our user interface.
 
+Link to Video Report: https://www.youtube.com/watch?v=beRpJNQ7Lcs
+
 ---
 
 ### Deployment Instructions
